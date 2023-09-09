@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dfrade <dfrade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 11:36:17 by dfrade            #+#    #+#             */
-/*   Updated: 2023/09/08 18:05:27 by dfrade           ###   ########.fr       */
+/*   Created: 2023/09/09 14:06:25 by dfrade            #+#    #+#             */
+/*   Updated: 2023/09/09 17:31:31 by dfrade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	ft_printf(const char *string, ...)
 			i++;
 			while (string[i] == '#' || string[i] == '+' || string[i] == ' ')
 				i++;
-			length = length + ft_format_handler(args, string[i], string[i - 1]);
+			length += ft_format_handler(args, string[i], string[i - 1]);
 		}
 		else
-			length = length + ft_putchar(string[i]);
+			length += ft_putchar(string[i]);
 		i++;
 	}
 	va_end(args);
@@ -96,8 +96,6 @@ int	ft_strcmp(const char *s1, const char *s2)
 
 	i = 0;
 	while ((s1[i] == s2[i]) && (s1[i] != '\0') && (s2[i] != '\0'))
-	{
 		i++;
-	}
 	return (s1[i] - s2[i]);
 }

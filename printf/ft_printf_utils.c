@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dfrade <dfrade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 11:36:44 by dfrade            #+#    #+#             */
-/*   Updated: 2023/09/06 20:08:01 by dfrade           ###   ########.fr       */
+/*   Created: 2023/09/09 14:04:26 by dfrade            #+#    #+#             */
+/*   Updated: 2023/09/09 17:29:12 by dfrade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,6 @@ int	ft_putstr(char *str)
 	return (length);
 }
 
-int	ft_putnbr_base(long int nb, char *base)
-{
-	int	length;
-	int	base_length;
-
-	length = 0;
-	base_length = ft_strlen(base);
-	if (nb < 0)
-	{
-		length = length + ft_putchar('-');
-		nb = nb * -1;
-	}
-	if (nb >= base_length)
-		length = length + ft_putnbr_base((nb / base_length), base);
-	length = length + ft_putchar(base[nb % base_length]);
-	return (length);
-}
-
 int	ft_putptr(unsigned long nb, char *base)
 {
 	int	length;
@@ -71,9 +53,27 @@ int	ft_putptr(unsigned long nb, char *base)
 	if (nb == 0)
 		return (ft_putstr("(nil)"));
 	if (nb >= (unsigned long)base_length)
-		length = length + ft_putptr((nb / base_length), base);
+		length += ft_putptr((nb / base_length), base);
 	else
-		length = length + ft_putstr("0x");
-	length = length + ft_putchar(base[nb % base_length]);
+		length += ft_putstr("0x");
+	length += ft_putchar(base[nb % base_length]);
+	return (length);
+}
+
+int	ft_putnbr_base(long int nb, char *base)
+{
+	int	length;
+	int	base_length;
+
+	length = 0;
+	base_length = ft_strlen(base);
+	if (nb < 0)
+	{
+		length += ft_putchar('-');
+		nb = nb * -1;
+	}
+	if (nb >= base_length)
+		length += ft_putnbr_base((nb / base_length), base);
+	length += ft_putchar(base[nb % base_length]);
 	return (length);
 }

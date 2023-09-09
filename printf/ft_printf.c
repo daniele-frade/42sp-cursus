@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dfrade <dfrade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/30 11:36:17 by dfrade            #+#    #+#             */
-/*   Updated: 2023/09/08 18:05:39 by dfrade           ###   ########.fr       */
+/*   Created: 2023/09/09 14:03:47 by dfrade            #+#    #+#             */
+/*   Updated: 2023/09/09 17:27:47 by dfrade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	ft_printf(const char *string, ...)
 		if (string[i] == '%')
 		{
 			i++;
-			length = length + ft_format_handler(args, string[i]);
+			length += ft_format_handler(args, string[i]);
 		}
 		else
-			length = length + ft_putchar(string[i]);
+			length += ft_putchar(string[i]);
 		i++;
 	}
 	va_end(args);
