@@ -1,6 +1,6 @@
 # 42sp Cursus
 
-This is a repository with the projects developed at [42 São Paulo](https://www.42sp.org.br/) programming school. 
+This is a repository with the projects developed at [42 São Paulo](https://www.42sp.org.br/) programming school.
 
 Start date: July 10, 2023
 
@@ -14,8 +14,8 @@ Start date: July 10, 2023
 
 - C Language
 - Shell
-- Git
 - Linux
+- Git/Github
 
 **Soft skills:**
 
@@ -28,3 +28,7 @@ Start date: July 10, 2023
 ## Projects
 
 The list below presents the projects performed during the Cursus.
+
+- [libft](https://github.com/daniele-frade/42sp-cursus/tree/main/libft)
+- [get_next_line](https://github.com/daniele-frade/42sp-cursus/tree/main/get_next_line)
+- [printf](https://github.com/daniele-frade/42sp-cursus/tree/main/printf)
