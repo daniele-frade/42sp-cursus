@@ -31,7 +31,7 @@ For additional information regarding 42's selection process, known as "Piscine,"
 
 ## Projects
 
-The list below presents the projects performed during the Cursus.
+The list below presents the projects performed during the Cursus in a chronological order.
 
 | Project  | Status | Evaluation | Description |
 | :----: | :----: | :----: | :----: |
