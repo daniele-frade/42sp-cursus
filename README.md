@@ -2,7 +2,7 @@
 
 This is a repository with the projects developed at [42sp](https://www.42sp.org.br/) programming school.
 
-Start date: July 10, 2023
+>Start date: July 10, 2023
 
 ## 42 School
 
