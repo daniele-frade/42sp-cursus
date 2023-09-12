@@ -22,7 +22,6 @@ You have to implement the following conversions:
 You don’t have to do all the bonuses. Considering this, I only implemented the first part.
 
 - Manage all the following flags: `’# +’` yes, one of them is a space.
-
 - Manage any combination of the following flags: `’-0.’` and the field minimum width under all conversions.
 
 
