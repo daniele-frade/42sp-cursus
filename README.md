@@ -36,5 +36,5 @@ The list below presents the projects performed during the Cursus in a chronologi
 | Project  | Status | Evaluation | Description |
 | :----: | :----: | :----: | :----: |
 | [libft](https://github.com/daniele-frade/42sp-cursus/tree/main/libft)                 | Finished <br> August 11, 2023 | ⭐<br>125/100 | This project is the first project as a student at 42. It is about coding a C library. It will contain a lot of general purpose functions your programs will rely upon. | 
-| [get_next_line](https://github.com/daniele-frade/42sp-cursus/tree/main/get_next_line) | Finished <br> August 27, 2023 | ⭐<br>125/100 | This project is about programming a function that returns a line read from a file descriptor, stdin, or even later a network connection. |
+| [get_next_line](https://github.com/daniele-frade/42sp-cursus/tree/main/get_next_line) | Finished <br> August 27, 2023 | ⭐<br>125/100 | This project is about programming a function that returns a line read from a file descriptor, stdin, or even later a network connection.  It will be a good start to know what a static variable is. |
 | [printf](https://github.com/daniele-frade/42sp-cursus/tree/main/printf)               | Finished <br> September 11, 2023 | ⭐<br>110/100 | This project is pretty straightforward, you have to recode `printf` from libc. You will learn what is and how to implement variadic functions. |
