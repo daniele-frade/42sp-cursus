@@ -1,6 +1,7 @@
-# libft
+# Libft
 
 This project is the first project as a student at 42. It is about coding a `C library`. It will contain a lot of **general purpose functions** your programs will rely upon.
+<br>
 <br>
 
 ## ✅ Mandatory part
@@ -16,8 +17,8 @@ This project is the first project as a student at 42. It is about coding a `C li
 | :------: | :---------: |
 | [`ft_atoi`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_atoi.c) | The  `atoi()` function converts the initial portion of the `string` pointed to by `nptr` to `int` and returns the converted value. |
 | [`ft_bzero`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_bzero.c) | The `bzero()` function  erases the data in the `n` bytes of the memory starting at the location pointed to by `s`, by writing zeros (bytes containing `'\0'`) to that area. |
-| [ft_calloc](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_calloc.c) |  |
-| [ft_isalnum](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isalnum.c) |  |
+| [`ft_calloc`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_calloc.c) | The `calloc()` function allocates memory for an array of `nmemb` elements of size bytes each and returns a pointer to the allocated memory. The memory is set to zero. |
+| [`ft_isalnum`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isalnum.c) | The `isalnum()` function checks whether the character is alphanumeric or not and returns a non-zero value if the character falls into the tested class, and zero if not. |
 | [ft_isalpha](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isalpha.c) |  |
 | [ft_isascii](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isascii.c) |  |
 | [ft_isdigit](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isdigit.c) |  |
@@ -53,11 +54,11 @@ This project is the first project as a student at 42. It is about coding a `C li
 | [ft_substr](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_substr.c) |  |
 | [ft_strtrim](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_strtrim.c) |  |
 | [ft_split](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_split.c) |  |
-
+<br>
 
 ## ⭐ Bonus
 
-- Functions to manipulate memory and strings is very useful. But you will soon discover that manipulating `lists` is even more useful.
+- Functions to manipulate memory and strings are very useful. But you will soon discover that manipulating `lists` is even more useful.
 - You have to use the following structure to represent a `node` of your list:
 
 ```C
