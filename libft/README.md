@@ -38,7 +38,7 @@ This project is the first project as a student at 42. It is about coding a `C li
 
 ### Aditional Functions
 
-- [ft_itoa](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstadd_back_bonus.c)
+- [ft_itoa](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_itoa.c)
 - [ft_putchar_fd](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_putchar_fd.c)
 - [ft_putendl_fd](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_putendl_fd.c)
 - [ft_putnbr_fd](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_putnbr_fd.c)
