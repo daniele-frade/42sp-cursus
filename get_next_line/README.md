@@ -2,6 +2,7 @@
 
 This project is about programming a function that returns a line read from a file descriptor or even later a network connection. It will be a good start to know what a `static variable` is.
 <br>
+<br>
 
 ## ✅ Mandatory part
 
@@ -16,6 +17,7 @@ You have to write a function that returns a line read from a file descriptor:
 - You will compile your code as follows (a buffer size of 42 is used as an example): `cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 <files>.c`
 - We consider that `get_next_line()` has undefined behavior if the file pointed to by the file descriptor changed since the last call whereas `read()` didn’t reach the end of the file.
 - We also consider that `get_next_line()` has an undefined behavior when reading a binary file. However, you can implement a logical way to handle this behavior if you want to
+<br>
 
 ## ⭐ Bonus
 
