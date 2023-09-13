@@ -52,6 +52,18 @@ This project is the first project as a student at 42. It is about coding a `C li
 
 ## ⭐ Bonus
 
+- Functions to manipulate memory and strings is very useful. But you will soon discover that manipulating `lists` is even more useful.
+- You have to use the following structure to represent a `node` of your list:
+
+```
+typedef struct  s_list
+{
+  void          *content;
+  struct s_list *next;
+}               t_list
+```
+### Bonus Functions
+
 - [ft_lstadd_back](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstadd_back_bonus.c)
 - [ft_lstadd_front](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstadd_front_bonus.c)
 - [ft_lstclear](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstclear_bonus.c)
