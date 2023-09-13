@@ -12,8 +12,8 @@ This project is the first project as a student at 42. It is about coding a `C li
 
 ### Libc Functions
 
-- [ft_atoi](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_atoi.c)
-- [ft_bzero](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_bzero.c)
+- [`ft_atoi`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_atoi.c): The  `atoi()` function converts the initial portion of the `string` pointed to by `nptr` to `int` and returns the converted value.
+- [`ft_bzero`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_bzero.c)
 - [ft_calloc](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_calloc.c)
 - [ft_isalnum](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isalnum.c)
 - [ft_isalpha](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isalpha.c)
