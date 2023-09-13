@@ -1,9 +1,10 @@
-# ft_printf
+# Printf
 
-This project consists of coding a library that contains a simplified version of `printf` from libc. You will learn what is and how to implement variadic functions.
+This project consists of coding a library that contains a simplified version of `printf` from `libc`. You will learn what is and how to implement variadic functions.
+<br>
 <br>
 
-### ✅ Mandatory part
+## ✅ Mandatory part
 
 You have to implement the following conversions:
 
@@ -16,15 +17,11 @@ You have to implement the following conversions:
 - `%x` Prints a number in hexadecimal (base 16) lowercase format.
 - `%X` Prints a number in hexadecimal (base 16) uppercase format.
 - `%%` Prints a percent sign.
+<br>
 
-### ⭐ Bonus
+## ⭐ Bonus
 
 You don’t have to do all the bonuses. Considering this, I only implemented the first part.
 
 - Manage all the following flags: `’# +’` yes, one of them is a space.
 - Manage any combination of the following flags: `’-0.’` and the field minimum width under all conversions.
-
-
-
-
-
