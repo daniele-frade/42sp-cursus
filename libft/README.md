@@ -19,10 +19,10 @@ This project is the first project as a student at 42. It is about coding a `C li
 | [`ft_bzero`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_bzero.c) | The `bzero()` function  erases the data in the `n` bytes of the memory starting at the location pointed to by `s`, by writing zeros (bytes containing `'\0'`) to that area. |
 | [`ft_calloc`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_calloc.c) | The `calloc()` function allocates memory for an array of `nmemb` elements of size bytes each and returns a pointer to the allocated memory. The memory is set to zero. |
 | [`ft_isalnum`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isalnum.c) | The `isalnum()` function checks whether the character is alphanumeric or not and returns a non-zero value if the character falls into the tested class, and zero if not. |
-| [ft_isalpha](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isalpha.c) |  |
-| [ft_isascii](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isascii.c) |  |
-| [ft_isdigit](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isdigit.c) |  |
-| [ft_isprint](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isprint.c) |  |
+| [`ft_isalpha`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isalpha.c) | The `isalpha()` function checks whether the character is alphabetic or not and returns a non-zero value if the character falls into the tested class, and zero if not. |
+| [`ft_isascii`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isascii.c) | The `isascii()` function checks whether the character is ASCII character or not and returns a non-zero value if the character falls into the tested class, and zero if not. |
+| [`ft_isdigit`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isdigit.c) | The `isdigit()` function checks whether the character is digit (0 - 9) or not and returns a non-zero value if the character falls into the tested class, and zero if not. |
+| [`ft_isprint`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_isprint.c) | The `isprint()` function checks whether the character is printable (including space) or not and returns a non-zero value if the character falls into the tested class, and zero if not. |
 | [ft_memchr](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_memchr.c) |  |
 | [ft_memcmp](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_memcmp.c) |  |
 | [ft_memcpy](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_memcpy.c) |  |
