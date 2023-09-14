@@ -6,6 +6,10 @@ CFLAGS = -Wall -Wextra -Werror
 
 HEADER = libft.h
 
+SOURCE_PATH = $(addprefix ./src/, $(SOURCE))
+
+SOURCE_BONUS_PATH = $(addprefix ./src/, $(SOURCE_BONUS))
+
 SOURCE =	ft_isalpha.c \
 			ft_isdigit.c \
 			ft_isalnum.c \
@@ -51,9 +55,9 @@ SOURCE_BONUS =	ft_lstnew_bonus.c \
 				ft_lstiter_bonus.c \
 				ft_lstmap_bonus.c
 
-OBJECTS = $(SOURCE:%.c=%.o) 
+OBJECTS = $(SOURCE_PATH:%.c=%.o) 
 
-BONUS_OBJECTS = $(SOURCE_BONUS:%.c=%.o)
+BONUS_OBJECTS = $(SOURCE_BONUS_PATH:%.c=%.o)
 
 all: $(NAME)
 
@@ -62,7 +66,7 @@ $(NAME): $(OBJECTS)
 bonus: $(BONUS_OBJECTS)
 
 %.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -I $(HEADER) -o $@
+	$(CC) $(CFLAGS) -c $< -I ./ -o $@
 	ar -rsc $(NAME) $@
 
 clean:
