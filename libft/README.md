@@ -43,17 +43,17 @@ This project is the first project as a student at 42. It is about coding a `C li
 
 | Function | Description |
 | :------: | :---------: |
-| [`ft_itoa`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_itoa.c) |  |
-| [`ft_putchar_fd`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_putchar_fd.c) |  |
-| [`ft_putendl_fd`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_putendl_fd.c) |  |
-| [`ft_putnbr_fd`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_putnbr_fd.c) |  |
-| [`ft_putstr_fd`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_putstr_fd.c) |  |
-| [`ft_striteri`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_striteri.c) |  |
-| [`ft_strmapi`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_strmapi.c) |  |
-| [`ft_strjoin`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_strjoin.c) |  |
-| [`ft_substr`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_substr.c) |  |
-| [`ft_strtrim`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_strtrim.c) |  |
-| [`ft_split`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_split.c) |  |
+| [`ft_itoa`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_itoa.c) | The `itoa()` function allocates (with `malloc(3)`) and returns a string representing the integer received as an argument. |
+| [`ft_putchar_fd`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_putchar_fd.c) | The `putchar()` function outputs the character `c` to the given file descriptor. |
+| [`ft_putendl_fd`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_putendl_fd.c) | The `putendl()` function outputs the string `s` to the given file descriptor followed by a newline. |
+| [`ft_putnbr_fd`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_putnbr_fd.c) | The `putnbr()` function outputs the integer `n` to the given file descriptor. |
+| [`ft_putstr_fd`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_putstr_fd.c) | The `putstr()` function outputs the string `s` to the given file descriptor. |
+| [`ft_striteri`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_striteri.c) | The `striteri()` function applies the function `f` on each character of the string passed as argument, passing its index as first argument. Each character is passed by address to `f` to be modified if necessary. |
+| [`ft_strmapi`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_strmapi.c) | The `strmapi()` function applies the function `f` to each character of the string `s`, and passing its index as the first argument to create a new string (with `malloc(3)`) resulting from successive applications of `f`. |
+| [`ft_strjoin`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_strjoin.c) | The `strjoin()` function allocates (with `malloc(3)`) and returns a new string, which is the result of the concatenation of `s1` and `s2`. |
+| [`ft_substr`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_substr.c) | The `substr()` function allocates (with `malloc(3)`) and returns a substring from the string `s`. |
+| [`ft_strtrim`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_strtrim.c) | The `strtrim()` function allocates (with `malloc(3)`) and returns a copy of `s1` with the characters specified in `set` removed from the beginning and the end of the string. |
+| [`ft_split`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_split.c) | The `split()` function allocates (with `malloc(3)`) and returns an array of strings obtained by splitting `s` using the character `c` as a delimiter. |
 <br>
 
 ## ⭐ Bonus
@@ -73,11 +73,11 @@ typedef	struct	s_list
 
 | Function | Description |
 | :------: | :---------: |
-| [`ft_lstadd_back`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstadd_back_bonus.c) |  |
-| [`ft_lstclear`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstclear_bonus.c) | |
-| [`ft_lstdelone`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstdelone_bonus.c) |  |
-| [`ft_lstiter`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstiter_bonus.c) |  |
-| [`ft_lstlast`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstlast_bonus.c) |  |
-| [`ft_lstmap`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstmap_bonus.c) |  |
-| [`ft_lstnew`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstnew_bonus.c) |  |
-| [`ft_lstsize`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstsize_bonus.c) |  |
+| [`ft_lstadd_back`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstadd_back_bonus.c) | The `lstadd_back()` function |
+| [`ft_lstclear`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstclear_bonus.c) | The `lstclear()` function |
+| [`ft_lstdelone`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstdelone_bonus.c) | The `lstdelone()` function |
+| [`ft_lstiter`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstiter_bonus.c) | The `lstiter()` function |
+| [`ft_lstlast`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstlast_bonus.c) | The `lstlast()` function |
+| [`ft_lstmap`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstmap_bonus.c) | The `lstmap()` function |
+| [`ft_lstnew`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstnew_bonus.c) | The `lstnew()` function |
+| [`ft_lstsize`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstsize_bonus.c) | The `lstsize()` function |
