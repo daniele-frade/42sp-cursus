@@ -73,11 +73,12 @@ typedef	struct	s_list
 
 | Function | Description |
 | :------: | :---------: |
-| [`ft_lstadd_back`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstadd_back_bonus.c) | The `lstadd_back()` function |
-| [`ft_lstclear`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstclear_bonus.c) | The `lstclear()` function |
-| [`ft_lstdelone`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstdelone_bonus.c) | The `lstdelone()` function |
-| [`ft_lstiter`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstiter_bonus.c) | The `lstiter()` function |
-| [`ft_lstlast`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstlast_bonus.c) | The `lstlast()` function |
-| [`ft_lstmap`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstmap_bonus.c) | The `lstmap()` function |
-| [`ft_lstnew`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstnew_bonus.c) | The `lstnew()` function |
-| [`ft_lstsize`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstsize_bonus.c) | The `lstsize()` function |
+| [`ft_lstadd_back`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstadd_back_bonus.c) | The `lstadd_back()` function adds the node `new` at the end of the list. |
+| [`ft_lstclear`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstclear_bonus.c) | The `lstclear()` deletes and frees the given node and every successor of that node, using the function `del`
+and `free(3)`. |
+| [`ft_lstdelone`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstdelone_bonus.c) | The `lstdelone()` function takes as a parameter a node and frees the memory of the node’s content using the function `del` given as a parameter and free the node. |
+| [`ft_lstiter`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstiter_bonus.c) | The `lstiter()` function iterates the list `lst` and applies the function `f` on the content of each node. |
+| [`ft_lstlast`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstlast_bonus.c) | The `lstlast()` function returns the last node of the list. |
+| [`ft_lstmap`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstmap_bonus.c) | The `lstmap()` function iterates the list `lst` and applies the function `f` on the content of each node. Creates a new list resulting of the successive applications of the function `f`. |
+| [`ft_lstnew`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstnew_bonus.c) | The `lstnew()` function allocates (with `malloc(3)`) and returns a new node. |
+| [`ft_lstsize`](https://github.com/daniele-frade/42sp-cursus/blob/main/libft/ft_lstsize_bonus.c) | The `lstsize()` function counts the number of nodes in a list. |
