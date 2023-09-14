@@ -1,7 +1,7 @@
 # Get_Next_Line
-
-This project is about programming a function that returns a line read from a file descriptor or even later a network connection. It will be a good start to know what a `static variable` is.
 <br>
+
+>This project is about programming a function that returns a line read from a file descriptor or even later a network connection. It will be a good start to know what a `static variable` is.
 <br>
 
 ## ✅ Mandatory part
