@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dfrade <dfrade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 14:00:46 by dfrade            #+#    #+#             */
-/*   Updated: 2023/08/27 10:02:39 by dfrade           ###   ########.fr       */
+/*   Updated: 2023/09/14 13:20:58 by dfrade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "../header/get_next_line.h"
 
 char	*ft_strchr(const char *s, int c)
 {

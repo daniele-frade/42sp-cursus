@@ -8,7 +8,7 @@ HEADER = libft.h
 
 SOURCE_PATH = $(addprefix ./src/, $(SOURCE))
 
-SOURCE_BONUS_PATH = $(addprefix ./src/, $(SOURCE_BONUS))
+BONUS_SOURCE_PATH = $(addprefix ./src/, $(SOURCE_BONUS))
 
 SOURCE =	ft_isalpha.c \
 			ft_isdigit.c \
@@ -57,7 +57,7 @@ SOURCE_BONUS =	ft_lstnew_bonus.c \
 
 OBJECTS = $(SOURCE_PATH:%.c=%.o) 
 
-BONUS_OBJECTS = $(SOURCE_BONUS_PATH:%.c=%.o)
+BONUS_OBJECTS = $(BONUS_SOURCE_PATH:%.c=%.o)
 
 all: $(NAME)
 

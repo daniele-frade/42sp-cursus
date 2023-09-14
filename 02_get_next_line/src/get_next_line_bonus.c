@@ -6,11 +6,11 @@
 /*   By: dfrade <dfrade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 14:00:49 by dfrade            #+#    #+#             */
-/*   Updated: 2023/08/27 10:53:02 by dfrade           ###   ########.fr       */
+/*   Updated: 2023/09/14 13:21:15 by dfrade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "../header/get_next_line_bonus.h"
 
 char	*ft_buffer_accumulator(int fd, char *static_buffer);
 char	*ft_get_current_line(char *static_buffer);
