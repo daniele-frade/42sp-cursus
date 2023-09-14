@@ -1,8 +1,9 @@
 # Printf
+<br>
 
-This project consists of coding a library that contains a simplified version of `printf` from `libc`. You will learn what is and how to implement variadic functions.
+>This project consists of coding a library that contains a simplified version of `printf` from `libc`. You will learn what is and how to implement variadic functions.
 <br>
-<br>
+
 
 ## ✅ Mandatory part
 
