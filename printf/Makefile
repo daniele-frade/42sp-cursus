@@ -6,9 +6,9 @@ FLAGS = -Wall -Wextra -Werror
 
 HEADER = ft_printf.h
 
-SOURCE = ft_printf.c ft_printf_utils.c
+SOURCE = ./src/ft_printf.c ./src/ft_printf_utils.c
 
-BONUS_SOURCE = ft_printf_bonus.c ft_printf_utils_bonus.c
+BONUS_SOURCE = ./src/ft_printf_bonus.c ./src/ft_printf_utils_bonus.c
 
 OBJECTS = $(SOURCE:%.c=%.o)
 
