@@ -1,7 +1,7 @@
 # Libft
-
-This project is the first project as a student at 42. It is about coding a `C library`. It will contain a lot of **general purpose functions** your programs will rely upon.
 <br>
+
+>This project is the first project as a student at 42. It is about coding a `C library`. It will contain a lot of **general purpose functions** your programs will rely upon.
 <br>
 
 ## ✅ Mandatory part
@@ -12,7 +12,6 @@ This project is the first project as a student at 42. It is about coding a `C li
 <br>
 
 ### Libc Functions:
-<br>
 
 | Function | Description |
 | :------: | :---------: |
@@ -42,7 +41,6 @@ This project is the first project as a student at 42. It is about coding a `C li
 <br>
 
 ### Aditional Functions:
-<br>
 
 | Function | Description |
 | :------: | :---------: |
@@ -75,7 +73,6 @@ typedef	struct	s_list
 <br>
 
 ### Bonus Functions:
-<br>
 
 | Function | Description |
 | :------: | :---------: |
