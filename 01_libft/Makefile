@@ -66,7 +66,7 @@ $(NAME): $(OBJECTS)
 bonus: $(BONUS_OBJECTS)
 
 %.o: %.c $(HEADER)
-	$(CC) $(CFLAGS) -c $< -I ./ -o $@
+	$(CC) $(CFLAGS) -c $< -I ./header -o $@
 	ar -rsc $(NAME) $@
 
 clean:
