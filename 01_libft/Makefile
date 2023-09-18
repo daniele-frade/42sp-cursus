@@ -4,7 +4,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-HEADER = libft.h
+HEADER = ./header/libft.h
 
 SOURCE_PATH = $(addprefix ./src/, $(SOURCE))
 
