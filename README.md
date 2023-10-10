@@ -11,7 +11,7 @@ This is a repository with the projects developed at [42sp](https://www.42sp.org.
 The 42 cursus is available to those who are accepted through its selection process. The "Piscine", a 26-day immersion in C programming, serves as the final phase of the selection process to become a student at 42.
 
 For additional information regarding 42's selection process, known as "Piscine," please visit the website [42sp](https://www.42sp.org.br/) or [42 Network](https://www.42network.org/).
-
+virtual machine
 ## Skills developed at 42sp Cursus
 
 **Hard skills:**
@@ -31,10 +31,12 @@ For additional information regarding 42's selection process, known as "Piscine,"
 
 ## Projects
 
-The list below presents the projects performed during the Cursus in a chronological order.
+The list below presents the projects performed during the Cursus in chronological order.
 
 | Project  | Status | Evaluation | Description |
 | :----: | :----: | :----: | :----: |
-| [Libft](https://github.com/daniele-frade/42sp-cursus/tree/main/01_libft)                 | Finished <br> August 11, 2023 | ⭐<br>125/100 | This project is the first project as a student at 42. It is about coding a `C library`. It will contain a lot of general purpose functions your programs will rely upon. | 
+| [Libft](https://github.com/daniele-frade/42sp-cursus/tree/main/01_libft)                 | Finished <br> August 11, 2023 | ⭐<br>125/100 | This project is the first project as a student at 42. It is about coding a `C library`. It will contain a lot of general-purpose functions your programs will rely upon. | 
 | [Get_Next_Line](https://github.com/daniele-frade/42sp-cursus/tree/main/02_get_next_line) | Finished <br> August 27, 2023 | ⭐<br>125/100 | This project is about programming a function that returns a line read from a file descriptor, stdin, or even later a network connection.  It will be a good start to know what a `static variable` is. |
-| [Printf](https://github.com/daniele-frade/42sp-cursus/tree/main/03_printf)               | Finished <br> September 11, 2023 | ⭐<br>110/100 | This project is pretty straightforward, you have to recode `printf` from libc. You will learn what is and how to implement `variadic functions`. |
+| [Printf](https://github.com/daniele-frade/42sp-cursus/tree/main/03_printf)               | Finished <br> September 11, 2023 | ⭐<br>110/100 | This project is pretty straightforward, you have to recode `printf` from `libc`. You will learn what is and how to implement `variadic functions`. |
+| [Born2beRoot](https://github.com/daniele-frade/42sp-cursus/tree/main/04_Born2beRoot)     | Finished <br> September 28, 2023 | ⭐<br>110/100 | This project aims to introduce the wonderful world of virtualization. You will create your first `virtual machine` in VirtualBox under specific instructions. Then, at the end of this project, you will be able to set up your own `operating system` while implementing strict rules. |
+
