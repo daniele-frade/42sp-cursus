@@ -7,10 +7,12 @@
 
 ## ✅ Mandatory part
 
-You have to implement the following:
+This project consists of having you set up your first server by following specific rules:
 
-
-- xxx
+- You must choose as an operating system either the latest stable version of Debian or the latest stable version of Rocky.
+- You must create at least 2 encrypted partitions using LVM. Below is an example of the expected partitioning:
+  <img src="Screenshot from 2023-10-10 16-29-35.png"/>
+- 
 <br>
 
 ## ⭐ Bonus
