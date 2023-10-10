@@ -47,6 +47,10 @@ This project consists of having you set up your first server by following specif
   - The number of users using the server.
   - The IPv4 address of your server and its MAC (Media Access Control) address.
   - The number of commands executed with the sudo program.
+  - This is an example of how the script is expected to work:
+    
+    <img src="Screenshot from 2023-10-10 17-13-19.png" />
+    
 <br>
 
 ## ⭐ Bonus
