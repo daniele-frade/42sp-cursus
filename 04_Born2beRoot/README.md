@@ -18,7 +18,9 @@ You have to implement the following:
 You don’t have to do all the bonuses. Considering this, I only implemented the first part.
 
 - Set up partitions correctly so you get a structure similar to the one below:
-  
+
+  <img src="Screenshot from 2023-10-10 16-29-35.png"/>
+
 - Set up a functional WordPress website with the following services: lighttpd, MariaDB, and PHP.
 - Set up a service of your choice that you think is useful (NGINX / Apache2 excluded!).
 
