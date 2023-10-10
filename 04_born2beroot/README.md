@@ -58,4 +58,3 @@ You don’t have to do all the bonuses.
 
 - Set up a functional WordPress website with the following services: `Lighttpd`, `MariaDB`, and `PHP`.
 - Set up a service of your choice that you think is useful (`NGINX` / `Apache2` excluded!).
-
