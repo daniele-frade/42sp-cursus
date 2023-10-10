@@ -33,7 +33,7 @@ This project consists of having you set up your first server by following specif
   - For security reasons too, the paths that can be used by sudo must be restricted like the example bellow:
     `/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin`
 - **Users and Groups**: in addition to the `root user`, a `user with your login` as username has to be present. This user has to belong to the `user42` and `sudo` groups.
-- **Script**: finally, you have to create a simple script called `monitoring.sh`. It must be developed in `bash`. At server startup, the script will display some information (listed below) on all terminals every 10 minutes. No error must be visible.
+- **Script**: finally, you have to create a simple script called `monitoring.sh`. It must be developed in `bash`. At server startup, the script will display some information (listed below) on all terminals every 10 minutes:
   - The architecture of your operating system and its kernel version.
   - The number of physical processors.
   - The number of virtual processors.
@@ -45,11 +45,7 @@ This project consists of having you set up your first server by following specif
   - The number of active connections.
   - The number of users using the server.
   - The `IPv4` address of your server and its `MAC` (Media Access Control) address.
-  - The number of commands executed with the sudo program.
-  - This is an example of how the script is expected to work:
-    
-    <img src="./images/Screenshot from 2023-10-10 17-13-19.png" />
-    
+  - The number of commands executed with the sudo program.   
 <br>
 
 ## ⭐ Bonus
