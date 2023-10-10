@@ -32,7 +32,7 @@ This project consists of having you set up your first server by following specif
   - The TTY mode has to be enabled for security reasons.
   - For security reasons too, the paths that can be used by sudo must be restricted like the example bellow:
     `/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin`
-- **Users**: in addition to the `root user`, a `user with your login` as username has to be present. This user has to belong to the `user42` and `sudo` groups.
+- **Users and Groups**: in addition to the `root user`, a `user with your login` as username has to be present. This user has to belong to the `user42` and `sudo` groups.
 - **Script**: finally, you have to create a simple script called `monitoring.sh`. It must be developed in `bash`. At server startup, the script will display some information (listed below) on all terminals every 10 minutes. No error must be visible.
   - The architecture of your operating system and its kernel version.
   - The number of physical processors.
