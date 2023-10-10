@@ -48,7 +48,7 @@ This project consists of having you set up your first server by following specif
   - The number of commands executed with the sudo program.
   - This is an example of how the script is expected to work:
     
-    <img src="Screenshot from 2023-10-10 17-13-19.png" />
+    <img src="./images/Screenshot from 2023-10-10 17-13-19.png" />
     
 <br>
 
@@ -58,7 +58,7 @@ You don’t have to do all the bonuses.
 
 - Set up partitions correctly so you get a structure similar to the one below:
 
-  <img src="Screenshot from 2023-10-10 16-29-35.png"/>
+  <img src="./images/Screenshot from 2023-10-10 16-29-35.png"/>
 
 - Set up a functional WordPress website with the following services: `Lighttpd`, `MariaDB`, and `PHP`.
 - Set up a service of your choice that you think is useful (`NGINX` / `Apache2` excluded!).
