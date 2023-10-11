@@ -69,33 +69,50 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
     
 1. Select `Manual` (to accomplish the first part of the bonus)
 
-2. Select a partition to modify its settings ⇒ `SCST1 (0, 0, 0) (sda) - 10.7 GB ATA VBOX HARDDISK` (whole memory to be used) ⇒ Create a new empty partition table on this device: `Yes`
-- Now you have a free space, select: `pri/log 10.7GB FREE SPACE`
-- In this part you are going to create 2 partitions:
-    - First: not encrypted, we use a physical memory to start the VM:
-        - `Create a new partition` ⇒ `500MB` ⇒ `Primary` ⇒ `Beginning` ⇒ Use as `Ext4` ⇒ Mount point: `/boot` ⇒ `Done setting up the partition`
-    - Second: encrypted, we will use a logical memory to the following `logical volumes` on the VM:
-        - `Create a new partition` ⇒ `max` ⇒ `Logical` ⇒ Use as `Ext4` ⇒ Mount point: `blank`  ⇒ `Done setting up the partition`
-        - `Configure encrypted volumes` ⇒ `Create encrypted volumes` ⇒ `/dev/sda5` ⇒ `Done setting up the partition` ⇒ `Finish` ⇒ `Yes`
-- Once we have the `primary` and `logical` partitions created, we are going to start to configure the LVM:
+2. Select a partition to modify its settings ⇒ `SCST1 (0, 0, 0) (sda) - 10.7 GB ATA VBOX HARDDISK` (whole memory to be used)
+    
+    - Create a new empty partition table on this device: `Yes`
+    - Now we have a free space, select: `pri/log 10.7GB FREE SPACE`
+
+3. In this part, we are going to create 2 partitions:
+    
+    The first partition does not involve encryption, instead, we utilize physical memory to initiate the VM.
+        
+    - `Create a new partition` ⇒ `500MB` ⇒ `Primary` ⇒ `Beginning` ⇒ Use as `Ext4` ⇒ Mount point: `/boot` ⇒ `Done setting up the partition`
+    
+    The second partition is encrypted, we will utilize logical memory to access the following logical volumes on the VM.
+       
+    - `Create a new partition` ⇒ `max` ⇒ `Logical` ⇒ Use as `Ext4` ⇒ Mount point: `blank`  ⇒ `Done setting up the partition`
+    
+    After creating the second partition, we will proceed to configure the encrypted volumes.
+    
+    - `Configure encrypted volumes` ⇒ `Create encrypted volumes` ⇒ `/dev/sda5` ⇒ `Done setting up the partition` ⇒ `Finish` ⇒ `Yes`
+
+4. Once we have the `primary` and `logical` partitions created, we are going to start to configure the LVM:
+    
     - Create a group: `Configure the Logical Volume Manager` ⇒ `Create Volume group` ⇒ group name: `LVMGroup` ⇒ `/dev/mapper/sda5_crypt`
     - Create logical volume: `Create Logical Volume` ⇒ `LVMGroup`
-    - After creating all the logical volumes, you will need to change the `Use as` and `Mount points` on each one
-    - Below we have all the data needed to create and set up the logical volumes:
-        - name `root` ⇒ size `3.2GB (32.47%)` ⇒ Use as `Ext4` ⇒ Mount point `/`
-        - name `swap` ⇒ size `747MB (7.47%)` ⇒ Use as `swap area`
-        - name `home` ⇒ size `1.6GB (16.23%)` ⇒ Use as `Ext4` ⇒ Mount point `/home`
-        - name `var` ⇒ size `974MB (9.74%)` ⇒ Use as `Ext4` ⇒ Mount point `/var`
-        - name `srv` ⇒ size `974MB (9.74%)` ⇒ Use as `Ext4` ⇒ Mount point `/srv`
-        - name `tmp` ⇒ size `974MB (9.74%)` ⇒ Use as `Ext4` ⇒ Mount point `/tmp`
-        - name `var-log` ⇒ size `1.2GB (12.99%)` ⇒ Use as `Ext4` ⇒ Mount point `Enter manually` ⇒ `/var-log`
-        - Select `Finish`
+   
+   After creating all the logical volumes, it is necessary to adjust the 'Use as' and 'Mount points' for each one. Below, you will find all the necessary information to create and configure the logical volumes:
+
+    - name `root` ⇒ size `3.2GB (32.47%)` ⇒ Use as `Ext4` ⇒ Mount point `/`
+    - name `swap` ⇒ size `747MB (7.47%)` ⇒ Use as `swap area`
+    - name `home` ⇒ size `1.6GB (16.23%)` ⇒ Use as `Ext4` ⇒ Mount point `/home`
+    - name `var` ⇒ size `974MB (9.74%)` ⇒ Use as `Ext4` ⇒ Mount point `/var`
+    - name `srv` ⇒ size `974MB (9.74%)` ⇒ Use as `Ext4` ⇒ Mount point `/srv`
+    - name `tmp` ⇒ size `974MB (9.74%)` ⇒ Use as `Ext4` ⇒ Mount point `/tmp`
+    - name `var-log` ⇒ size `1.2GB (12.99%)` ⇒ Use as `Ext4` ⇒ Mount point `Enter manually` ⇒ `/var-log`
+    - Select `Finish`
+    
+6. Finish the partitions:
+    
     - Write the changes to the disks: `Yes`
     - Scan extra installation media: `No`
     - Debian archive mirror country and Debian archive mirror: `Brazil` ⇒ `deb.debian.org`
     - HTTP proxy: `blank`
     - Choose software to install: `SSH server` and `standard system utilities`
     - Install the GRUB loader: `Yes` ⇒ `/dev/sda…`
+<br>
 
 ### Part 04: Sudo Configuration
 <br>
