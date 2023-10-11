@@ -27,7 +27,7 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
 
 3. Memory size:
 
-    - Choose the recommended memory size: `1024MB`
+    - Select the recommended memory size: `1024MB`
 
 4. Hard disk:
 
@@ -40,9 +40,9 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
 5. Change the Network:
     
     - Select the VM, click on `Settings`
-    - First, go to `Network` and select Attached to `NAT` ⇒ `Advanced` ⇒ `Port Forwarding` ⇒ `Add`
+    - First, go to `Network` and select `Attached` to `NAT` ⇒ `Advanced` ⇒ `Port Forwarding` ⇒ `Add`
     - Set `Host Port` and `Guest Port` to `4242`
-    - Then, go back to `Network` and now select Attached to `Bridged Adapter` ⇒ `enp3s0f0`
+    - Then, go back to `Network` and now select `Attached` to `Bridged Adapter` ⇒ `enp3s0f0`
 
 6. Configure the VM:
 
