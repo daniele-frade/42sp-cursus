@@ -50,7 +50,7 @@ This project consists of having you set up your first server by following specif
 
 ## ⭐ Bonus
 
-You don’t have to do all the bonuses.
+You don’t have to do all the bonuses. Considering this, I only implemented the first part.
 
 - Set up partitions correctly so you get a structure similar to the one below:
 
@@ -58,3 +58,10 @@ You don’t have to do all the bonuses.
 
 - Set up a functional WordPress website with the following services: `Lighttpd`, `MariaDB`, and `PHP`.
 - Set up a service of your choice that you think is useful (`NGINX` / `Apache2` excluded!).
+<br>
+
+## 💻 My solution
+
+- Here you can find a simple guide to the solution I've implemented for this project: [Born2beRoot Guide](https://github.com/daniele-frade/42sp-cursus/blob/main/04_born2beroot/guide/born2beroot_guide.md) 
+
+<br>
