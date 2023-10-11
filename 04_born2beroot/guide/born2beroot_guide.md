@@ -7,7 +7,7 @@
 ### Part 01: Download Your Virtual Machine and Your OS (Operating System)
 <br>
 
-We will utilize **Oracle VirtualBox** software to set up our virtual machine, with **Debian** as the chosen **OS**. 
+We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debian OS**.
 
 1. Download Oracle VirtualBox: www.virtualbox.org
 
@@ -16,8 +16,6 @@ We will utilize **Oracle VirtualBox** software to set up our virtual machine, wi
 
 ### Part 02: Install Your Virtual Machine
 <br>
-
-We are going to use the **Oracle VirtualBox** software in order to install our virtual machine and **Debian** as an **OS**. 
 
 1. Open the Oracle VirtualBox, click on `Machine` ⇒ `New`
 
