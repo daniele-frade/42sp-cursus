@@ -107,10 +107,14 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
 ### Part 04: Sudo Configuration
 <br>
 
-- Install sudo: `apt install sudo`
-- Check the installation: `dpkg -l | grep sudo` or `apt search sudo`
-- Configure sudo directory: `sudo mkdir /var/log/sudo`
-- Edit sudo file: `sudo visudo`
+1. Install sudo: `apt install sudo`
+
+2. Check the installation: `dpkg -l | grep sudo` or `apt search sudo`
+
+3. Configure sudo directory: `sudo mkdir /var/log/sudo`
+
+4. Edit sudo file: `sudo visudo`
+    
     - Password tries: `Defaults	passwd_tries = 3`
     - Message if password goes wrong: `Defaults badpass_message = "Wrong Password, padawan!"` or `Defaults insults`
     - To salve all the sudo activities:
@@ -119,121 +123,154 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
         - `Defaults iolog_dir="/var/log/sudo"`
     - TTY: `Defaults requiretty`
     - Define sudo local: `Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"`
-- Add user to sudo group: `adduser <username> sudo`
-- Delete user from sudo group: `deluser <username> sudo`
-- Check sudo group: `getent group sudo`
-- See the evaluation part:
-    - authentication using `sudo` has to be limited to 3 attempts in the event of an incorrect password
-    - a custom message of your choice has to be displayed if an error due to a wrong password occurs when using a `sudo`
-    - each action using `sudo` has to be archived, both inputs and outputs. The log file has to be saved in the`/var/log/sudo/folder`
-    - the TTY mode has to be enabled for security reasons
-    - for security reasons too, the paths that can be used by sudo must be restricted
-        - `/usr/local/sbin`, `/usr/local/bin`, `/usr/sbin`, `/usr/bin`, `/sbin`, `/bin`, `/snap/bin`
+
+5. Add user to sudo group: `adduser <username> sudo`
+
+6. Delete user from sudo group: `deluser <username> sudo`
+
+7. Check sudo group: `getent group sudo`
+
+8. See the evaluation part:
+
+    - Authentication using `sudo` has to be limited to 3 attempts in the event of an incorrect password
+    - A custom message of your choice has to be displayed if an error due to a wrong password occurs when using a `sudo`
+    - Each action using `sudo` has to be archived, both inputs and outputs. The log file has to be saved in the`/var/log/sudo/folder`
+    - The TTY mode has to be enabled for security reasons
+    - For security reasons too, the paths that can be used by sudo must be restricted: `/usr/local/sbin`, `/usr/local/bin`, `/usr/sbin`, `/usr/bin`, `/sbin`, `/bin`, `/snap/bin`
+<br>
 
 ### Part 05: Users and Groups
 <br>
 
-    - Users that should exist: `root` and `yourlogin`
-    - Check users:
-    - Create user:
-    - Delete user:
-    - Groups that should exist: `user42` and `sudo`
+1. Users that should exist: `root` and `yourlogin`
+
+    - Create user: `adduser <username>`
+    - Check users: `who` or `sudo cat /etc/passwd`
+    - Delete user: `deluser --remove-homoe <username>`
+    - Change user: `su - user` (su: switch user)
+
+2. Groups that should exist: `user42` and `sudo`
+
     - Your user (`yourlogin`) has to belong to the `user42` and `sudo`
-    - Check the list of groups:
+    - Check the list of groups: `getent group`
     - Check specific group: `getent <groupname> group`
-    - Create group:
-    - Delete group:
+    - Create group: `addgroup <groupname>`
+    - Delete group: `groupdel <groupname>`
     - Add user to group: `adduser <username> group`
     - Delete user from a group: `deluser <username> group`
-    - groupadd evaluating?
-    - change user: `su - user` (su: switch user)
+<br>
 
 ### Part 06: UFW Firewall Configuration
 <br>
 
-    - Install UFW: `apt install ufw`
+1. Install UFW: `apt install ufw`
+
     - Check the installation: `dpkg -l | grep ufw`
-    - Enable UFW: `ufw enable`
-    - Allow port 4242: `ufw allow 4242`
+
+2. Enable UFW: `ufw enable`
+
+3. Allow port 4242: `ufw allow 4242`
+    
     - Check the status: `ufw status`
     - For a bonus, add port 80: `ufw allow 80`
+<br>
 
 ### Part 07: SSH Configuration
 <br>
 
-    - Install SSH server: `apt install openssh-server`
+1. Install SSH server: `apt install openssh-server`
+    
     - Check the installation: `dpkg -l | grep ssh`
-    - Configuring SSH: `nano etc/ssh/sshd_config`
-        - Change line 13 `#Port 22` to `Port 4242`
-        - Change: `PermitRootLogin no`
-        - Enable SSH: `ssh enable`
-        - Check the changes: `systemctl status ssh` or `service ssh status`
-    - Connect via SSH:
-        - Check the IP/inet: `ifconfig` or `ip address`
-        - Connecting `ssh <username>@<ip-address> -p 4242`
-        - `logout`
-    - After configuring the ssh, enable the ssh: `systemctl enable ssh` ⇒ check the status: `systemctl status ssh` ⇒ you may need to restart: `systemctl restart ssh`
-    - An SSH service will be running on port 4242 only
-    - It must not be possible to connect using SSH as root
-    - Connection `inet`, `netmask` and `getaway`:
-        - inet 10.12.200.174 netmask 255.255.0.0
-        - getaway has the same value of the address/inet, but ending with 254.254 (example: 10.12.254.254)
-        - those numbers can change, you can check with `ifconfig`
-        - you can add the changes in `/etc/network/interfaces`
-        - It is better to have “interfaces” `static`, but if you change your location, go back to `dhcp`, get the current addresses with `ifconfig`, then change “interfaces” and go back to `static`, and restart the the networking: `service networking —full-restart`
-        - When you try to connect with `ssh`, put the current address: user@inet -p 4242
+
+2. Configuring SSH: `nano etc/ssh/sshd_config`
+    
+    - Change line 13 `#Port 22` to `Port 4242`
+    - Change: `PermitRootLogin no`
+    - Enable SSH: `ssh enable` or `systemctl enable ssh`
+    - Check the changes: `systemctl status ssh` or `service ssh status`
+    - After configuring the and enable the SSH, you may need to restart: `systemctl restart ssh`
+
+3. Connect via SSH:
+    
+    - Check the IP/inet: `ifconfig` or `ip address`
+    - Connecting `ssh <username>@<ip-address> -p 4242`
+
+4. Configuration for `inet`, `netmask` and `getaway`:
+    
+    - Here are some examples of `inet addresses: 10.12.200.174` with a `netmask of 255.255.0.0`
+    - The `gateway` value is identical to the `address/inet`, except it ends with `254.254` (e.g., `10.12.254.254`)
+    - These numbers may change, and you can verify them using the `ifconfig`
+    - If you wish to make changes, you can update the configuration in the `/etc/network/interfaces`
+    - You can have the connection set to `static` or `DHCP`
+    - After change the connection, you may need to restart: `service networking —full-restart`
+    - When attempting to connect via SSH, use the current IP address in the format user@inet -p `4242`
+<br>
 
 ### Part 08: Password Policy
 <br>
     
-    - Edit the login.defs file: `nano /etc/login.defs`
-        - Expire every 30 days: `PASS_MAX_DAYS 30`
-        - Minimum 2 days before the modification: `PASS_MIN_DAYS 2`
-        - Warning message 7 days before the password expire: `PASS_WARN_AGE 7`
-    - Install lib for strong password policy: `apt install libpam-pwquality`
-    - Check the installation: `dpkg -l | grep libpam-pwquality`
-    - Edit the file: `nano /etc/pam.d/common-password`
-        - On line 25, add the rules:  `password requisite pam_pwquality.so retry=3 minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root`
-    - After creat`ing` the password policies, check if it is working with the root user: `chage flags -W -M -m`
+1. Edit the login.defs file: `nano /etc/login.defs`
+    
+    - Expire every 30 days: `PASS_MAX_DAYS 30`
+    - Minimum 2 days before the modification: `PASS_MIN_DAYS 2`
+    - Warning message 7 days before the password expire: `PASS_WARN_AGE 7`
 
-### Part 09:Cron and Monitoring Script
+2. Install lib for strong password policy: `apt install libpam-pwquality`
+
+3. Check the installation: `dpkg -l | grep libpam-pwquality`
+
+4. Edit the file: `nano /etc/pam.d/common-password`
+    
+    - On line 25, add the rules:  `password requisite pam_pwquality.so retry=3 minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root`
+
+5. Once you've established the password policies, verify their functionality with the root user: `chage flags -W -M -m`
+<br>
+
+### Part 09: Cron and Monitoring Script
 <br>
     
-    - Create a file `monitoring.sh`
-    - The script will display the information listed below on all terminals every 10 minutes at server startup.
-        - The architecture of your operating system and its kernel version
-        - The number of physical processors
-        - The number of virtual processors
-        - The current available RAM on your server and its utilization rate as a percentage
-        - The currently available memory on your server and its utilization rate as a percentage
-        - The current utilization rate of your processors as a percentage
-        - The date and time of the last reboot
-        - Whether LVM is active or not
-        - The number of active connections
-        - The number of users using the server
-        - The IPv4 address of your server and its MAC (Media Access Control) address
-        - The number of commands executed with the sudo program
-    - Edit the cron file: `crontab -e`
-        - Add this config: `/10 * * * * sh /path/to/script`
-        - Boot time and other flags: `who -b` or `uptime -s`
-        - How does cron work? See crontab.guru
-        - `crontab -e` is the file where the execution rule of monitoring e sleep files is. They monitoring and sleep files are set up to work together (`&&`)
-    - To fix some time issues, create a file `sleep.sh`
+1. Create a file `monitoring.sh`
+
+2. The script will display the information listed below on all terminals every 10 minutes at server startup.
+    
+    - The architecture of your operating system and its kernel version
+    - The number of physical processors
+    - The number of virtual processors
+    - The current available RAM on your server and its utilization rate as a percentage
+    - The currently available memory on your server and its utilization rate as a percentage
+    - The current utilization rate of your processors as a percentage
+    - The date and time of the last reboot
+    - Whether LVM is active or not
+    - The number of active connections
+    - The number of users using the server
+    - The IPv4 address of your server and its MAC (Media Access Control) address
+    - The number of commands executed with the sudo program
+
+3. Edit the cron file (where the execution rules for monitoring is defined).
+   
+    - Access the cron file: `crontab -e`
+    - Add this configuration: `/10 * * * * sh /path/to/script`
+    - For the system's boot time information: `who -b` or `uptime -s`
+<br>
 
 ### Part 10: Submission
 <br>
     
-    - Get the signature of your VM: `cd VirtualBox VMS/vmname` ⇒ `sha1sum vmname.vdi`
+1. Get the signature of your VM: `cd VirtualBox VMS/vmname` ⇒ `sha1sum vmname.vdi`
+    
     - `sha1sum` output example: `6e657c4619944be17df3c31faa030c25e43e40af`
-    - The signature of your VM should be saved in a `signature.txt` file and turned in at the root of your Git repository
+
+2. The signature of your VM should be saved in a `signature.txt` file and turned in at the root of your Git repository
+<br>
 
 ### Summary Installation List:
    
-    - `apt install sudo`: sudo configuration
-    - `apt install ufw`: uncomplicated firewall
-    - `apt install openssh-server`: ssh configuration
-    - `apt install net-tools`: for network with `Bridged Adapter`
-    - `apt install libpam-pwquality`: password policies
-    - `apt install bc`: basic calculator for the `sleep.sh`
-    - `apt install sysstat`: mpstat used for the `monitoring.sh`
-    - `apt install man`: Linux manual
+- `apt install sudo`: sudo configuration
+- `apt install ufw`: uncomplicated firewall
+- `apt install openssh-server`: ssh configuration
+- `apt install net-tools`: for network with `Bridged Adapter`
+- `apt install libpam-pwquality`: password policies
+- `apt install bc`: basic calculator for the `sleep.sh` (optional)
+- `apt install sysstat`: mpstat used for the `monitoring.sh`
+- `apt install man`: Linux manual (optional)
+- `apt install vim`: VIM editor (optional)
