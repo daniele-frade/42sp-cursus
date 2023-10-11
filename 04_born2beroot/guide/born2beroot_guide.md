@@ -5,7 +5,6 @@
 <br>
 
 ### Part 01: Download Your Virtual Machine and Your OS (Operating System)
-<br>
 
 We will utilize **Oracle VirtualBox** software to set up our virtual machine, with **Debian** as the chosen **OS**. 
 
@@ -15,7 +14,6 @@ We will utilize **Oracle VirtualBox** software to set up our virtual machine, wi
 <br>
 
 ### Part 02: Install Your Virtual Machine
-<br>
 
 We are going to use the **Oracle VirtualBox** software in order to install our virtual machine and **Debian** as an **OS**. 
 
@@ -65,7 +63,6 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
 <br>
 
 ### Part 03: Partition Disks Configuration
-<br>
     
 1. Select `Manual` (to accomplish the first part of the bonus)
 
@@ -105,7 +102,6 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
 <br>
 
 ### Part 04: Sudo Configuration
-<br>
 
 1. Install sudo: `apt install sudo`
 
@@ -140,7 +136,6 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
 <br>
 
 ### Part 05: Users and Groups
-<br>
 
 1. Users that should exist: `root` and `yourlogin`
 
@@ -161,7 +156,6 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
 <br>
 
 ### Part 06: UFW Firewall Configuration
-<br>
 
 1. Install UFW: `apt install ufw`
 
@@ -176,7 +170,6 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
 <br>
 
 ### Part 07: SSH Configuration
-<br>
 
 1. Install SSH server: `apt install openssh-server`
     
@@ -207,7 +200,6 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
 <br>
 
 ### Part 08: Password Policy
-<br>
     
 1. Edit the login.defs file: `nano /etc/login.defs`
     
@@ -227,7 +219,6 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
 <br>
 
 ### Part 09: Cron and Monitoring Script
-<br>
     
 1. Create a file `monitoring.sh`
 
@@ -254,7 +245,6 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
 <br>
 
 ### Part 10: Submission
-<br>
     
 1. Get the signature of your VM: `cd VirtualBox VMS/vmname` ⇒ `sha1sum vmname.vdi`
     
@@ -264,13 +254,13 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
 <br>
 
 ### Summary Installation List:
-   
-- `apt install sudo`: sudo configuration
-- `apt install ufw`: uncomplicated firewall
-- `apt install openssh-server`: ssh configuration
-- `apt install net-tools`: for network with `Bridged Adapter`
-- `apt install libpam-pwquality`: password policies
-- `apt install bc`: basic calculator for the `sleep.sh` (optional)
-- `apt install sysstat`: mpstat used for the `monitoring.sh`
-- `apt install man`: Linux manual (optional)
-- `apt install vim`: VIM editor (optional)
+
+- Sudo: `apt install sudo`
+- UFW: `apt install ufw`
+- SSH: `apt install openssh-server`
+- Network with `Bridged Adapter`: `apt install net-tools`
+- Password policies: `apt install libpam-pwquality`
+- Basic calculator for the `sleep.sh` (optional): `apt install bc`
+- Linux Network Monitoring (mpstat) used for the `monitoring.sh`: `apt install sysstat`
+- Linux manual: (optional): `apt install man`
+- VIM editor (optional): `apt install vim`
