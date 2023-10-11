@@ -7,59 +7,62 @@
 ### Part 01: Download Your Virtual Machine and Your OS (Operating System)
 <br>
 
-We are going to use the **Oracle VirtualBox** software in order to install our virtual machine and **Debian** as an **OS**. 
+We will utilize **Oracle VirtualBox** software to set up our virtual machine, with **Debian** as the chosen **OS**. 
 
-    1 - Download Oracle VirtualBox: www.virtualbox.org
+1. Download Oracle VirtualBox: www.virtualbox.org
 
-    2 - Download Debian: www.debian.org/download
+2. Download Debian: www.debian.org/download
+<br>
 
 ### Part 02: Install Your Virtual Machine
 <br>
 
 We are going to use the **Oracle VirtualBox** software in order to install our virtual machine and **Debian** as an **OS**. 
 
-    1 - Open the Oracle VirtualBox, click on Machine -> New
+1. Open the Oracle VirtualBox, click on `Machine` ⇒ `New`
 
-    2 - Name and operating system:
+2. Name and operating system:
 
-        - Name: born2beroot
-        - Type: Linux
-        - Version: Debian (64-bit)
+    - Name: `born2beroot`
+    - Type: `Linux`
+    - Version: `Debian (64-bit)`
 
-    3 - Memory size:
+3. Memory size:
 
-        - Choose the recommended memory size: 1024MB
+    - Choose the recommended memory size: `1024MB`
 
-    4 - Hard disk:
+4. Hard disk:
 
-        - Create a virtual hard disk now
-        - VDI (VirtualBox Disk Image)
-        - Storage on physical hard disk: Dynamically allocated
-        - File location and size: for this project, I chose `8GB` for the size
-        - After that, your VM is created and is showing on the VM list
+    - Create a virtual hard disk now
+    - VDI (VirtualBox Disk Image)
+    - Storage on physical hard disk: Dynamically allocated
+    - File location and size: for this project, I chose `8GB` for the size
+    - After that, your VM is created and is showing on the VM list
 
-    5 - Change the Network:
+5. Change the Network:
     
-        - Select the VM, click on `Settings`
-        - First: Go to`Network` -> Attached to `NAT` -> `Advanced` -> `Port Forwarding` -> `Add` -> Set `Host Port` and `Guest Port` to `4242` -> `ok`
-        - Second, go back to `Network` -> Attached to `Bridged Adapter` -> `enp3s0f0`
+    - Select the VM, click on `Settings`
+    - First, go to `Network` and select Attached to `NAT` ⇒ `Advanced` ⇒ `Port Forwarding` ⇒ `Add`
+    - Set `Host Port` and `Guest Port` to `4242`
+    - Then, go back to `Network` and now select Attached to `Bridged Adapter` ⇒ `enp3s0f0`
 
-    6 - Configure the VM:
+6. Configure the VM:
 
-        - Start your VM: select the VM and click on `Start`
-        - Select part-up disk: here you will find your file with your OS chosen: `debian-12.1.0-amd64-netinst.iso`
-        - Select `Install` (without a graphic interface)
-        - Select a language: `English`
-        - Country, territory or area: `other` -> `South America` -> `Brazil`
-        - Configure locales: `United States en_US.UTF-8`
-        - Configure the keyboard: `Brazilian`
-        - Hostname: your `login+42`
-        - Domain name: `blank`
-        - Root password: should follow the rules
-        - Full name for the new user: the name of the new user that will be created for you to use instead of the root account, your `name`
-        - Username for your account: your `login`
-        - New user password: should follow the rules
-        - Configure the clock: `São Paulo`
+    - Select the VM and click on `Start`
+    - Select part-up disk: here you will find your file with your OS chosen: `debian-12.1.0-amd64-netinst.iso`
+    - Select `Install` (without a graphic interface)
+    - Select a language: `English`
+    - Select country, territory or area: `other` ⇒ `South America` ⇒ `Brazil`
+    - Configure locales: `United States en_US.UTF-8`
+    - Configure the keyboard: `Brazilian`
+    - Hostname: your `login+42`
+    - Domain name: `blank`
+    - Root password: should follow the rules
+    - Full name for the new user: your `name`
+    - Username for your account: your `login`
+    - New user password: should follow the rules
+    - Configure the clock: `São Paulo`
+<br>
 
 ### Part 03: Partition Disks Configuration
 <br>
