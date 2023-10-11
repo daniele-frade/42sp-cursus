@@ -225,7 +225,7 @@ All of the following configurations are recommended to be done with root user pr
     
     - On line 25, add the rules:  `password requisite pam_pwquality.so retry=3 minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root`
 
-5. Once you've established the password policies, verify their functionality with the root user: `chage flags -W -M -m`
+5. Once you've established the password policies, verify their functionality with the root user: `chage flags -W -M -m` or `chage -l <username>`
 <br>
 
 ### Part 09: Cron and Monitoring Script
