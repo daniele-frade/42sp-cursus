@@ -82,7 +82,7 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
     
     - Create a group: `Configure the Logical Volume Manager` ⇒ `Create Volume group` ⇒ group name: `LVMGroup` ⇒ `/dev/mapper/sda5_crypt`
     - Create logical volume: `Create Logical Volume` ⇒ `LVMGroup`
-    - After creating all the logical volumes, it is necessary to adjust the 'Use as' and 'Mount points' for each one. Below, you will find all the necessary information to create and configure the logical volumes (based on 8GB):
+    - After creating all the logical volumes, it is necessary to adjust the 'Use as' and 'Mount points' for each one. Below, you will find all the necessary information to create and configure the logical volumes (based on 8GB VM):
       
         - name `root` ⇒ size `3.2GB (32.47%)` ⇒ Use as `Ext4` ⇒ Mount point `/`
         - name `swap` ⇒ size `747MB (7.47%)` ⇒ Use as `swap area`
@@ -100,10 +100,13 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
     - HTTP proxy: `blank`
     - Choose software to install: `SSH server` and `standard system utilities`
     - Install the GRUB loader: `Yes` ⇒ `/dev/sda…`
+    - Check your VM partitions: `lsblk`
 <br>
 
 ### Part 04: Sudo Configuration
 <br>
+
+All of the following configurations are recommended to be done with root user privileges.
 
 1. Install sudo: `apt install sudo`
 
@@ -122,7 +125,7 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
     - TTY: `Defaults requiretty`
     - Define sudo local: `Defaults secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"`
 
-5. Add user to sudo group: `adduser <username> sudo`
+5. Add user to sudo group: `adduser <username> sudo` or `usermod -aG sudo <username>`
 
 6. Delete user from sudo group: `deluser <username> sudo`
 
