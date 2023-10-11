@@ -23,7 +23,7 @@ This project consists of having you set up your first server by following specif
   - The user has to receive a warning message 7 days before their password expires.
   - Your password must be at least 10 characters long. It must contain an uppercase letter, a lowercase letter, and a number. Also, it must not contain more than 3 consecutive identical characters.
   - The password must not include the name of the user.
-  - The following rule does not apply to the root password: The password must have at least 7 characters that are not part of the former password.
+  - The password must have at least 7 characters that are not part of the former password (not apply to the root).
   - Of course, your root password has to comply with this policy
 - **Sudo**: you have to install and configure sudo following strict rules with the following requirements:
   - Authentication using sudo has to be limited to 3 attempts in case of an incorrect password.
@@ -32,19 +32,19 @@ This project consists of having you set up your first server by following specif
   - The TTY mode has to be enabled for security reasons.
   - For security reasons too, the paths that can be used by sudo must be restricted like the example bellow:
     `/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin`
-- **Users and Groups**: in addition to the `root user`, a `user with your login` as username has to be present. This user has to belong to the `user42` and `sudo` groups.
+- **Users and Groups**: in addition to the `root` user, a user with your login as username has to be present, (e.g., `will`). This user has to belong to the `user42` and `sudo` groups.
 - **Script**: finally, you have to create a simple script called `monitoring.sh`. It must be developed in `bash`. At server startup, the script will display some information (listed below) on all terminals every 10 minutes:
   - The architecture of your operating system and its kernel version.
   - The number of physical processors.
   - The number of virtual processors.
-  - The current available `RAM` on your server and its utilization rate as a percentage.
+  - The current available RAM on your server and its utilization rate as a percentage.
   - The current available memory on your server and its utilization rate as a percentage.
   - The current utilization rate of your processors as a percentage.
   - The date and time of the last reboot.
-  - Whether `LVM` is active or not.
+  - Whether LVM is active or not.
   - The number of active connections.
   - The number of users using the server.
-  - The `IPv4` address of your server and its `MAC` (Media Access Control) address.
+  - The IPv4 address of your server and its MAC (Media Access Control) address.
   - The number of commands executed with the sudo program.   
 <br>
 
