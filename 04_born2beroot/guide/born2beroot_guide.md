@@ -26,73 +26,75 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
         - Type: Linux
         - Version: Debian (64-bit)
 
-3 - Memory size:
+    3 - Memory size:
 
-- Choose the recommended memory size: 1024MB
+        - Choose the recommended memory size: 1024MB
 
-4 - Hard disk:
+    4 - Hard disk:
 
-- Create a virtual hard disk now
-- VDI (VirtualBox Disk Image)
-- Storage on physical hard disk: Dynamically allocated
-- File location and size: for this project, I chose `8GB` for the size
-- After that, your VM is created and is showing on the VM list
+        - Create a virtual hard disk now
+        - VDI (VirtualBox Disk Image)
+        - Storage on physical hard disk: Dynamically allocated
+        - File location and size: for this project, I chose `8GB` for the size
+        - After that, your VM is created and is showing on the VM list
 
-5 - Change the Network:
+    5 - Change the Network:
     
-- Select the VM, click on `Settings`
-    - First: Go to`Network` -> Attached to `NAT` -> `Advanced` -> `Port Forwarding` -> `Add` -> Set `Host Port` and `Guest Port` to `4242` -> `ok`
-    - Second, go back to `Network` -> Attached to `Bridged Adapter` -> `enp3s0f0`
+        - Select the VM, click on `Settings`
+        - First: Go to`Network` -> Attached to `NAT` -> `Advanced` -> `Port Forwarding` -> `Add` -> Set `Host Port` and `Guest Port` to `4242` -> `ok`
+        - Second, go back to `Network` -> Attached to `Bridged Adapter` -> `enp3s0f0`
 
-6 - Configure the VM:
+    6 - Configure the VM:
 
-- Start your VM: select the VM and click on `Start`
-- Select part-up disk: here you will find your file with your OS chosen: `debian-12.1.0-amd64-netinst.iso`
-- Select `Install` (without a graphic interface)
-- Select a language: `English`
-- Country, territory or area: `other` -> `South America` -> `Brazil`
-- Configure locales: `United States en_US.UTF-8`
-- Configure the keyboard: `Brazilian`
-- Hostname: your `login+42`
-- Domain name: `blank`
-- Root password: should follow the rules
-- Full name for the new user: the name of the new user that will be created for you to use instead of the root account, your `name`
-- Username for your account: your `login`
-- New user password: should follow the rules
-- Configure the clock: `São Paulo`
+        - Start your VM: select the VM and click on `Start`
+        - Select part-up disk: here you will find your file with your OS chosen: `debian-12.1.0-amd64-netinst.iso`
+        - Select `Install` (without a graphic interface)
+        - Select a language: `English`
+        - Country, territory or area: `other` -> `South America` -> `Brazil`
+        - Configure locales: `United States en_US.UTF-8`
+        - Configure the keyboard: `Brazilian`
+        - Hostname: your `login+42`
+        - Domain name: `blank`
+        - Root password: should follow the rules
+        - Full name for the new user: the name of the new user that will be created for you to use instead of the root account, your `name`
+        - Username for your account: your `login`
+        - New user password: should follow the rules
+        - Configure the clock: `São Paulo`
 
-7 - Partition disks configuration:
+### Part 03: Partition Disks Configuration
+<br>
     
-- Select `Manual` (to accomplish the first part of the bonus)
-- Select a partition to modify its settings -> `SCST1 (0, 0, 0) (sda) - 10.7 GB ATA VBOX HARDDISK` (whole memory to be used) -> Create a new empty partition table on this device: `Yes`
-- Now you have a free space, select: `pri/log 10.7GB FREE SPACE`
-- In this part you are going to create 2 partitions:
-    - First: not encrypted, we use a physical memory to start the VM:
-        - `Create a new partition` -> `500MB` -> `Primary` -> `Beginning` -> Use as `Ext4` -> Mount point: `/boot` -> `Done setting up the partition`
-    - Second: encrypted, we will use a logical memory to the following `logical volumes` on the VM:
-        - `Create a new partition` -> `max` -> `Logical` -> Use as `Ext4` -> Mount point: `blank`  -> `Done setting up the partition`
-        - `Configure encrypted volumes` -> `Create encrypted volumes` -> `/dev/sda5` -> `Done setting up the partition` -> `Finish` -> `Yes`
-- Once we have the `primary` and `logical` partitions created, we are going to start to configure the LVM:
-    - Create a group: `Configure the Logical Volume Manager` -> `Create Volume group` -> group name: `LVMGroup` -> `/dev/mapper/sda5_crypt`
-    - Create logical volume: `Create Logical Volume` -> `LVMGroup`
-    - After creating all the logical volumes, you will need to change the `Use as` and `Mount points` on each one
-    - Below we have all the data needed to create and set up the logical volumes:
-        - name `root` -> size `3.2GB (32.47%)` -> Use as `Ext4` -> Mount point `/`
-        - name `swap` -> size `747MB (7.47%)` -> Use as `swap area`
-        - name `home` -> size `1.6GB (16.23%)` -> Use as `Ext4` -> Mount point `/home`
-        - name `var` -> size `974MB (9.74%)` -> Use as `Ext4` -> Mount point `/var`
-        - name `srv` -> size `974MB (9.74%)` -> Use as `Ext4` -> Mount point `/srv`
-        - name `tmp` -> size `974MB (9.74%)` -> Use as `Ext4` -> Mount point `/tmp`
-        - name `var-log` -> size `1.2GB (12.99%)` -> Use as `Ext4` -> Mount point `Enter manually` -> `/var-log`
-        - Select `Finish`
-    - Write the changes to the disks: `Yes`
-    - Scan extra installation media: `No`
-    - Debian archive mirror country and Debian archive mirror: `Brazil` -> `deb.debian.org`
-    - HTTP proxy: `blank`
-    - Choose software to install: `SSH server` and `standard system utilities`
-    - Install the GRUB loader: `Yes` -> `/dev/sda…`
+    - Select `Manual` (to accomplish the first part of the bonus)
+    - Select a partition to modify its settings -> `SCST1 (0, 0, 0) (sda) - 10.7 GB ATA VBOX HARDDISK` (whole memory to be used) -> Create a new empty partition table on this device: `Yes`
+    - Now you have a free space, select: `pri/log 10.7GB FREE SPACE`
+    - In this part you are going to create 2 partitions:
+        - First: not encrypted, we use a physical memory to start the VM:
+            - `Create a new partition` -> `500MB` -> `Primary` -> `Beginning` -> Use as `Ext4` -> Mount point: `/boot` -> `Done setting up the partition`
+        - Second: encrypted, we will use a logical memory to the following `logical volumes` on the VM:
+            - `Create a new partition` -> `max` -> `Logical` -> Use as `Ext4` -> Mount point: `blank`  -> `Done setting up the partition`
+            - `Configure encrypted volumes` -> `Create encrypted volumes` -> `/dev/sda5` -> `Done setting up the partition` -> `Finish` -> `Yes`
+    - Once we have the `primary` and `logical` partitions created, we are going to start to configure the LVM:
+        - Create a group: `Configure the Logical Volume Manager` -> `Create Volume group` -> group name: `LVMGroup` -> `/dev/mapper/sda5_crypt`
+        - Create logical volume: `Create Logical Volume` -> `LVMGroup`
+        - After creating all the logical volumes, you will need to change the `Use as` and `Mount points` on each one
+        - Below we have all the data needed to create and set up the logical volumes:
+            - name `root` -> size `3.2GB (32.47%)` -> Use as `Ext4` -> Mount point `/`
+            - name `swap` -> size `747MB (7.47%)` -> Use as `swap area`
+            - name `home` -> size `1.6GB (16.23%)` -> Use as `Ext4` -> Mount point `/home`
+            - name `var` -> size `974MB (9.74%)` -> Use as `Ext4` -> Mount point `/var`
+            - name `srv` -> size `974MB (9.74%)` -> Use as `Ext4` -> Mount point `/srv`
+            - name `tmp` -> size `974MB (9.74%)` -> Use as `Ext4` -> Mount point `/tmp`
+            - name `var-log` -> size `1.2GB (12.99%)` -> Use as `Ext4` -> Mount point `Enter manually` -> `/var-log`
+            - Select `Finish`
+        - Write the changes to the disks: `Yes`
+        - Scan extra installation media: `No`
+        - Debian archive mirror country and Debian archive mirror: `Brazil` -> `deb.debian.org`
+        - HTTP proxy: `blank`
+        - Choose software to install: `SSH server` and `standard system utilities`
+        - Install the GRUB loader: `Yes` -> `/dev/sda…`
 
-8 - Sudo configuration:
+### Part 04: Sudo Configuration
+<br>
 
 - Install sudo: `apt install sudo`
 - Check the installation: `dpkg -l | grep sudo` or `apt search sudo`
@@ -117,7 +119,8 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
     - for security reasons too, the paths that can be used by sudo must be restricted
         - `/usr/local/sbin`, `/usr/local/bin`, `/usr/sbin`, `/usr/bin`, `/sbin`, `/bin`, `/snap/bin`
 
-9 - Users and groups
+### Part 05: Users and Groups
+<br>
 
     - Users that should exist: `root` and `yourlogin`
     - Check users:
@@ -134,7 +137,8 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
     - groupadd evaluating?
     - change user: `su - user` (su: switch user)
 
-10 - UFW Firewall configuration:
+### Part 06: UFW Firewall Configuration
+<br>
 
     - Install UFW: `apt install ufw`
     - Check the installation: `dpkg -l | grep ufw`
@@ -143,8 +147,9 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
     - Check the status: `ufw status`
     - For a bonus, add port 80: `ufw allow 80`
 
-11 - SSH configuration:
-    
+### Part 07: SSH Configuration
+<br>
+
     - Install SSH server: `apt install openssh-server`
     - Check the installation: `dpkg -l | grep ssh`
     - Configuring SSH: `nano etc/ssh/sshd_config`
@@ -167,7 +172,8 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
         - It is better to have “interfaces” `static`, but if you change your location, go back to `dhcp`, get the current addresses with `ifconfig`, then change “interfaces” and go back to `static`, and restart the the networking: `service networking —full-restart`
         - When you try to connect with `ssh`, put the current address: user@inet -p 4242
 
-11 - Password policy:
+### Part 08: Password Policy
+<br>
     
     - Edit the login.defs file: `nano /etc/login.defs`
         - Expire every 30 days: `PASS_MAX_DAYS 30`
@@ -179,7 +185,8 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
         - On line 25, add the rules:  `password requisite pam_pwquality.so retry=3 minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root`
     - After creat`ing` the password policies, check if it is working with the root user: `chage flags -W -M -m`
 
-12 - Monitoring script and Cron:
+### Part 09:Cron and Monitoring Script
+<br>
     
     - Create a file `monitoring.sh`
     - The script will display the information listed below on all terminals every 10 minutes at server startup.
@@ -202,13 +209,14 @@ We are going to use the **Oracle VirtualBox** software in order to install our v
         - `crontab -e` is the file where the execution rule of monitoring e sleep files is. They monitoring and sleep files are set up to work together (`&&`)
     - To fix some time issues, create a file `sleep.sh`
 
-13 - Submission:
+### Part 10: Submission
+<br>
     
     - Get the signature of your VM: `cd VirtualBox VMS/vmname` ⇒ `sha1sum vmname.vdi`
     - `sha1sum` output example: `6e657c4619944be17df3c31faa030c25e43e40af`
     - The signature of your VM should be saved in a `signature.txt` file and turned in at the root of your Git repository
 
-14 - Installation list:
+### Summary Installation List:
    
     - `apt install sudo`: sudo configuration
     - `apt install ufw`: uncomplicated firewall
