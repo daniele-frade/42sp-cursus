@@ -1,7 +1,7 @@
 # Born2beRoot Guide
 <br>
 
->This is a simple installation guide for the virtual machine proposed by the project.
+>This is a simple installation guide for the virtual machine proposed by the project, which proved to be quite helpful to me. However, there may be alternative approaches to achieve the same outcome.
 <br>
 
 ### Part 01: Download Your Virtual Machine and Your OS (Operating System)
