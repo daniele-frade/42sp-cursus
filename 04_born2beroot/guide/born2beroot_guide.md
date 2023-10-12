@@ -5,7 +5,6 @@
 <br>
 
 ### Part 01: Download Your Virtual Machine and Your OS (Operating System)
-<br>
 
 We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debian OS**.
 
@@ -15,7 +14,6 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
 <br>
 
 ### Part 02: Install Your Virtual Machine
-<br>
 
 1. Open the Oracle VirtualBox, click on `Machine` ⇒ `New`
 
@@ -34,7 +32,7 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
     - Create a virtual hard disk now
     - VDI (VirtualBox Disk Image)
     - Storage on physical hard disk: Dynamically allocated
-    - File location and size: for this project, I chose `8GB` for the size
+    - File location and size: for this project, I've opted for an 8GB file size
     - After that, your VM is created and is showing on the VM list
 
 5. Change the Network:
@@ -50,7 +48,7 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
     - Select part-up disk: here you will find your file with your OS chosen: `debian-12.1.0-amd64-netinst.iso`
     - Select `Install` (without a graphic interface)
     - Select a language: `English`
-    - Select country, territory or area: `other` ⇒ `South America` ⇒ `Brazil`
+    - Select country, territory, or area: `other` ⇒ `South America` ⇒ `Brazil`
     - Configure locales: `United States en_US.UTF-8`
     - Configure the keyboard: `Brazilian`
     - Hostname: your `login+42`
@@ -63,7 +61,6 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
 <br>
 
 ### Part 03: Partition Disks Configuration
-<br>
 
 1. Select `Manual` (to accomplish the first part of the bonus)
 
@@ -103,11 +100,10 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
     - Check your VM partitions: `lsblk`
 <br>
 
->All of the following configurations are recommended to be done with root user privileges
+#### ***All of the following configurations are recommended to be done with root user privileges***
 <br>
 
 ### Part 04: Sudo Configuration
-<br>
 
 1. Install sudo: `apt install sudo`
 
@@ -142,7 +138,6 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
 <br>
 
 ### Part 05: Users and Groups
-<br>
 
 1. Users that should exist: `root` and `yourlogin`
 
@@ -163,7 +158,6 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
 <br>
 
 ### Part 06: UFW Firewall Configuration
-<br>
 
 1. Install UFW: `apt install ufw`
 
@@ -178,7 +172,6 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
 <br>
 
 ### Part 07: SSH Configuration
-<br>
 
 1. Install SSH server: `apt install openssh-server`
     
@@ -210,7 +203,6 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
 <br>
 
 ### Part 08: Password Policy
-<br>
 
 1. Edit the login.defs file: `nano /etc/login.defs`
     
@@ -230,24 +222,23 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
 <br>
 
 ### Part 09: Cron and Monitoring Script
-<br>
 
 1. Create a file `monitoring.sh`
 
 2. The script will display the information listed below on all terminals every 10 minutes at server startup.
     
-    - The architecture of your operating system and its kernel version
-    - The number of physical processors
-    - The number of virtual processors
-    - The current available RAM on your server and its utilization rate as a percentage
-    - The currently available memory on your server and its utilization rate as a percentage
-    - The current utilization rate of your processors as a percentage
-    - The date and time of the last reboot
-    - Whether LVM is active or not
-    - The number of active connections
-    - The number of users using the server
-    - The IPv4 address of your server and its MAC (Media Access Control) address
-    - The number of commands executed with the sudo program
+       The architecture of your operating system and its kernel version
+       The number of physical processors
+       The number of virtual processors
+       The current available RAM on your server and its utilization rate as a percentage
+       The currently available memory on your server and its utilization rate as a percentage
+       The current utilization rate of your processors as a percentage
+       The date and time of the last reboot
+       Whether LVM is active or not
+       The number of active connections
+       The number of users using the server
+       The IPv4 address of your server and its MAC (Media Access Control) address
+       The number of commands executed with the sudo program
 
 3. Edit the cron file (where the execution rules for monitoring are defined).
    
@@ -258,7 +249,6 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
 <br>
 
 ### Part 10: Submission
-<br>
 
 1. Get the signature of your VM: `cd VirtualBox VMS/born2beroot` ⇒ `sha1sum born2beroot.vdi`
     
