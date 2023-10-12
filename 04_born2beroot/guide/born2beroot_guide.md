@@ -42,7 +42,7 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
     - Select the VM, click on `Settings`
     - First, go to `Network` and select `Attached` to `NAT` ⇒ `Advanced` ⇒ `Port Forwarding` ⇒ `Add`
     - Set `Host Port` and `Guest Port` to `4242`
-    - Then, go back to `Network` and now select `Attached` to `Bridged Adapter` ⇒ `enp3s0f0`
+    - After that, change the `Attached` to `Bridged Adapter` ⇒ `enp3s0f0`
 
 6. Configure the VM:
 
@@ -67,7 +67,7 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
 
 1. Select `Manual` (to accomplish the first part of the bonus)
 
-2. Select a partition to modify its settings ⇒ `SCST1 (0, 0, 0) (sda) - 10.7 GB ATA VBOX HARDDISK` (whole memory to be used)
+2. Select a partition to modify its settings ⇒ `SCST1 (0, 0, 0) (sda) -  8GB ATA VBOX HARDDISK` (whole memory to be used)
     
     - Create a new empty partition table on this device: `Yes`
     - Now we have a free space, select: `pri/log 10.7GB FREE SPACE`
@@ -81,8 +81,8 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
 4. Once we have the `primary` and `logical` partitions created, we are going to start to configure the LVM:
     
     - Create a group: `Configure the Logical Volume Manager` ⇒ `Create Volume group` ⇒ group name: `LVMGroup` ⇒ `/dev/mapper/sda5_crypt`
-    - Create logical volume: `Create Logical Volume` ⇒ `LVMGroup`
-    - After creating all the logical volumes, it is necessary to adjust the 'Use as' and 'Mount points' for each one. Below, you will find all the necessary information to create and configure the logical volumes (based on 8GB VM):
+    - Create logical volume: `Create Logical Volume` ⇒ `LVMGroup` ⇒ `LV name` (this is where we will create all the requested LVs)
+    - After creating all the logical volumes, it is necessary to adjust the `Use as` and `Mount points` for each one. Below, you will find all the necessary information to create and configure the logical volumes (based on 8GB VM):
       
         - name `root` ⇒ size `3.2GB (32.47%)` ⇒ Use as `Ext4` ⇒ Mount point `/`
         - name `swap` ⇒ size `747MB (7.47%)` ⇒ Use as `swap area`
@@ -103,18 +103,19 @@ We'll be utilizing **Oracle VirtualBox** software in conjunction with the **Debi
     - Check your VM partitions: `lsblk`
 <br>
 
-### Part 04: Sudo Configuration
+>All of the following configurations are recommended to be done with root user privileges
 <br>
 
-All of the following configurations are recommended to be done with root user privileges.
+### Part 04: Sudo Configuration
+<br>
 
 1. Install sudo: `apt install sudo`
 
 2. Check the installation: `dpkg -l | grep sudo` or `apt search sudo`
 
-3. Configure sudo directory: `sudo mkdir /var/log/sudo`
+3. Configure sudo directory: `mkdir /var/log/sudo`
 
-4. Edit sudo file: `sudo visudo`
+4. Edit sudo file: `visudo`
     
     - Password tries: `Defaults	passwd_tries = 3`
     - Message if password goes wrong: `Defaults badpass_message = "Wrong Password, padawan!"` or `Defaults insults`
@@ -146,7 +147,7 @@ All of the following configurations are recommended to be done with root user pr
 1. Users that should exist: `root` and `yourlogin`
 
     - Create user: `adduser <username>`
-    - Check users: `who` or `sudo cat /etc/passwd`
+    - Check users: `who` or `cat /etc/passwd`
     - Delete user: `deluser --remove-homoe <username>`
     - Change user: `su - user` (su: switch user)
 
@@ -166,13 +167,13 @@ All of the following configurations are recommended to be done with root user pr
 
 1. Install UFW: `apt install ufw`
 
-    - Check the installation: `dpkg -l | grep ufw`
+    - Check the installation: `dpkg -l | grep ufw` or `apt search ufw`
 
 2. Enable UFW: `ufw enable`
 
 3. Allow port 4242: `ufw allow 4242`
     
-    - Check the status: `ufw status`
+    - Check the status: `systemctl status ufw` or `ufw status`
     - For a bonus, add port 80: `ufw allow 80`
 <br>
 
@@ -181,15 +182,15 @@ All of the following configurations are recommended to be done with root user pr
 
 1. Install SSH server: `apt install openssh-server`
     
-    - Check the installation: `dpkg -l | grep ssh`
+    - Check the installation: `dpkg -l | grep ssh` or `apt search ssh`
 
 2. Configuring SSH: `nano etc/ssh/sshd_config`
     
-    - Change line 13 `#Port 22` to `Port 4242`
+    - Change line 13 from `#Port 22` to `Port 4242`
     - Change: `PermitRootLogin no`
     - Enable SSH: `ssh enable` or `systemctl enable ssh`
     - Check the changes: `systemctl status ssh` or `service ssh status`
-    - After configuring the and enable the SSH, you may need to restart: `systemctl restart ssh`
+    - After configuring and enable the SSH, you may need to restart the SSH or the VM: `systemctl restart ssh` or `reboot`
 
 3. Connect via SSH:
     
@@ -204,8 +205,8 @@ All of the following configurations are recommended to be done with root user pr
     - These numbers may change, and you can verify them using the `ifconfig`
     - If you wish to make changes, you can update the configuration in the `/etc/network/interfaces`
     - You can have the connection set to `static` or `DHCP`
-    - After change the connection, you may need to restart: `service networking —full-restart`
-    - When attempting to connect via SSH, use the current IP address in the format user@inet -p `4242`
+    - After configuring the connection, you may need to restart the network or the VM: `service networking —full-restart` or `reboot`
+    - When attempting to connect via SSH, use the current IP address in the format `user@inet -p 4242`
 <br>
 
 ### Part 08: Password Policy
@@ -219,7 +220,7 @@ All of the following configurations are recommended to be done with root user pr
 
 2. Install lib for strong password policy: `apt install libpam-pwquality`
 
-3. Check the installation: `dpkg -l | grep libpam-pwquality`
+3. Check the installation: `dpkg -l | grep libpam-pwquality` or `apt search libpam-pwquality`
 
 4. Edit the file: `nano /etc/pam.d/common-password`
     
