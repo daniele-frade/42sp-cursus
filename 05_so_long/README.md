@@ -45,7 +45,7 @@ Your project must comply with the following rules:
 	- The map must be closed/surrounded by walls. If it’s not, the program must return an error.
 	- You have to check if there’s a valid path in the map.
 	- You must be able to parse any kind of map, as long as it respects the above rules.
-	- Another example of a minimal .ber map:
+	- Another example of a minimal `.ber` map:
 	
 	<img src="./readme_img/map_ex02.jpg">
 	<br>
