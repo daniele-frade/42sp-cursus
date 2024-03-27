@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dfrade <dfrade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 13:31:09 by dfrade            #+#    #+#             */
-/*   Updated: 2023/11/15 16:17:57 by dfrade           ###   ########.fr       */
+/*   Updated: 2023/11/15 19:51:14 by dfrade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-
-#define NO 0
-#define YES 1
 
 int	g_can_i_send_a_signal;
 
@@ -23,7 +20,7 @@ int	main(int argc, char **argv)
 	int	i;
 
 	g_can_i_send_a_signal = 0;
-	if (check_params(argv[1], argv[2]) != 0 && check_params_2(argc) != 0)
+	if (check_params_2(argc) != 0 && check_params(argv[1], argv[2]) != 0)
 	{
 		signal(SIGUSR1, server_signal);
 		server_pid = ft_atoi(argv[1]);
@@ -33,6 +30,7 @@ int	main(int argc, char **argv)
 			send_signal_in_bits(argv[2][i], server_pid);
 			i++;
 		}
+		send_signal_in_bits('\n', server_pid);
 	}
 	else
 		return (ft_printf("ERROR\n"));
