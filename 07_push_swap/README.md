@@ -51,3 +51,5 @@ The "checker" program:
 - If after executing those instructions, the stack a is actually sorted and the stack b is empty, then the program must display "OK" followed by a ’\n’ on the standard output.
 - In every other case, it must display "KO" followed by a ’\n’ on the standard output.
 - In case of error, you must display "Error" followed by a ’\n’ on the standard error. Errors include for example: some arguments are not integers, some arguments are bigger than an integer, there are duplicates, an instruction doesn’t exist and/or is incorrectly formatted.
+
+For this project, I did not implement the bonus feature.
