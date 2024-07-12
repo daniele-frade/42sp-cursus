@@ -42,5 +42,5 @@ The list below presents the projects performed during the Cursus in chronologica
 | [So_Long](https://github.com/daniele-frade/42sp-cursus/tree/main/05_so_long)     | Finished <br> November 11, 2023 | <br>100/100 | This project is a small 2D game with minilibx. You'll learn about textures, sprites and tiles. |
 | [Minitalk](https://github.com/daniele-frade/42sp-cursus/tree/main/06_minitalk)     | Finished <br> November 15, 2023 | ⭐<br>125/100 | The purpose of this project is to code a small data exchange program using UNIX signals. |
 | [Push_Swap](https://github.com/daniele-frade/42sp-cursus/tree/main/07_push_swap)     | Finished <br> December 08, 2023 | <br>84/100 | This project involves sorting data on a stack, with a limited set of instructions, and the smallest number of moves. |
-| [Minishell](https://github.com/daniele-frade/42sp-cursus/tree/main/08_minishell)     | Work in Progress <br>  | <br>   /100 | This project is about creating a simple shell, your own little bash. |
+| [Minishell](https://github.com/daniele-frade/42sp-cursus/tree/main/08_minishell)     | Finished <br> June 28, 2024  | <br>   ⭐101/100 | This project is about creating a simple shell, your own little bash. |
 
