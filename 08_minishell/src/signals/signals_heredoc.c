@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   signals_heredoc.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dfrade <dfrade@student.42.fr>              +#+  +:+       +#+        */
+/*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/28 15:11:02 by csilva-m          #+#    #+#             */
-/*   Updated: 2024/06/24 19:22:52 by dfrade           ###   ########.fr       */
+/*   Created: 2024/06/16 00:44:45 by dfrade            #+#    #+#             */
+/*   Updated: 2024/06/26 14:17:50 by csilva-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ctrl_c_heredoc(int signal)
 {
-	if (!s)
-		return ;
-	write(fd, s, ft_strlen(s));
+	(void)signal;
+	ft_putstr_fd("\n", 1);
+	get_core()->is_heredoc = TRUE;
+	get_core()->exit_status = 130;
+	close(get_core()->doc_fd);
+	clear_child();
 }

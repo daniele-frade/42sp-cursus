@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   check_redirects.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 16:33:28 by csilva-m          #+#    #+#             */
-/*   Updated: 2024/06/23 09:55:30 by csilva-m         ###   ########.fr       */
+/*   Created: 2024/06/08 16:39:50 by dfrade            #+#    #+#             */
+/*   Updated: 2024/06/23 15:41:44 by csilva-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	check_redirects(t_cmd *cmd)
 {
-	char	*dest;
-	int		dest_i;
-	int		i;
-
-	dest = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (dest == NULL)
-		return (NULL);
-	dest_i = 0;
-	i = 0;
-	while (s1 && s1[i])
+	if (cmd->redir_in != NULL)
 	{
-		dest[dest_i] = s1[i];
-		i++;
-		dest_i++;
+		dup2(cmd->redir_in->fd, STDIN_FILENO);
+		close(cmd->redir_in->fd);
 	}
-	i = 0;
-	while (s2 && s2[i])
+	if (cmd->redir_out != NULL)
 	{
-		dest[dest_i] = s2[i];
-		i++;
-		dest_i++;
+		dup2(cmd->redir_out->fd, STDOUT_FILENO);
+		close(cmd->redir_out->fd);
 	}
-	dest[dest_i] = '\0';
-	return (dest);
 }

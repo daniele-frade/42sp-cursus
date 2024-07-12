@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfrade <dfrade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/01 11:32:38 by csilva-m          #+#    #+#             */
-/*   Updated: 2024/05/18 17:23:22 by csilva-m         ###   ########.fr       */
+/*   Created: 2024/06/16 00:56:50 by dfrade            #+#    #+#             */
+/*   Updated: 2024/06/26 19:18:14 by dfrade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*my_get_env(char *key)
 		return (NULL);
 	while (env)
 	{
-		if (!ft_strncmp(env->key, key, ft_strlen(key)))
+		if (!ft_strncmp(env->key, key, ft_strlen(env->key)))
 			return (ft_strdup(env->value));
 		if (!ft_strncmp(key, "?", 2))
 			return (ft_itoa(get_core()->exit_status));
@@ -49,59 +49,31 @@ char	*my_get_env(char *key)
 	return (ft_strdup(""));
 }
 
-t_bool	have_dollar(char *str, int *i, int *status)
+void	remove_expansions_to_nothing(void)
 {
-	while (str[(*i)])
+	t_token	*current;
+
+	current = get_core()->token;
+	while (current)
 	{
-		(*status) = ft_quotes_status(str[(*i)], (*status));
-		if (str[(*i)] == '$' && str[(*i) + 1] == '$' && ((*status) == 0
-				|| (*status) == 1))
-		{
-			(*i)++;
-			return (TRUE);
-		}
-		if (str[(*i)] == '$' && ((*status) == 0 || (*status) == 1)
-			&& ft_isalpha(str[(*i) + 1]))
-			return (TRUE);
-		if (str[(*i)] == '$' && str[(*i) + 1] == '?')
-			return (TRUE);
-		(*i)++;
+		if (current->token == VAR && current->str[0] == '\0'
+			&& current->prev == NULL)
+			remove_token(&get_core()->token, current);
+		else if (current->token == VAR && current->str[0] == '\0'
+			&& current->prev != NULL
+			&& current->prev->token != REDIRECT
+			&& current->prev->token != APPEND && current->prev->token != TRUNC)
+			remove_token(&get_core()->token, current);
+		current = current->next;
 	}
-	return (FALSE);
 }
 
-t_bool	mult_dollar(char *str, char **var)
+void	process_token(t_token *cur, int *i, int *status)
 {
-	int		i;
-	char	*line;
-
-	i = 0;
-	line = str;
-	while (str[i])
-	{
-		if (str[i] == '$' && str[i + 1] == '$')
-		{
-			line = ft_strchr(line, '$');
-			(*var) = ft_substr(line, 0, 2);
-			return (FALSE);
-		}
-		line++;
-		i++;
-	}
-	return (TRUE);
-}
-
-void	replace_invalid(t_token *cur, char c)
-{
-	int	i;
-
-	i = 0;
-	while (cur->str[i])
-	{
-		if (cur->str[i] == c)
-			cur->str[i] = '$';
-		i++;
-	}
+	replace_invalid(cur, get_core()->invalid);
+	*i = 0;
+	*status = 0;
+	remove_quote(cur->str, cur);
 }
 
 void	parsing_vars(void)
@@ -114,18 +86,21 @@ void	parsing_vars(void)
 	cur = get_core()->token;
 	while (cur)
 	{
+		if (cur->token == HEREDOC)
+		{
+			cur = cur->next->next;
+			continue ;
+		}
 		if (have_dollar(cur->str, &i, &status))
 		{
 			if (mult_dollar(cur->str, &var))
 				garbage_collect(var = find_var(cur->str, i));
-			cur->str = ft_replace_index(cur->str, var, my_get_env(var + 1), i);
+			cur->str = ft_replace(cur->str, var, my_get_env(var + 1));
 			cur->token = VAR;
 			continue ;
 		}
-		replace_invalid(cur, get_core()->invalid);
-		i = 0;
-		status = 0;
-		remove_quote(cur->str);
+		process_token(cur, &i, &status);
 		cur = cur->next;
 	}
+	remove_expansions_to_nothing();
 }

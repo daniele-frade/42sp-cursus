@@ -6,49 +6,76 @@
 /*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 15:42:56 by csilva-m          #+#    #+#             */
-/*   Updated: 2024/05/23 12:41:12 by csilva-m         ###   ########.fr       */
+/*   Updated: 2024/06/28 17:52:08 by csilva-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	child_process(int doc_fd, char *limiter);
-void	wait_child(pid_t pid);
-void	prompt_heredoc(int doc_fd, char *limiter);
+void	child_process(char *limiter, t_bool flag);
+void	wait_child_heredoc(pid_t pid);
+void	prompt_heredoc(char *limiter, t_bool flag);
 char	*expand_on_heredoc(char *line);
 
-void	capture_heredoc(void)
+t_bool	has_quote(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '"' || str[i] == '\'')
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
+}
+
+void	capture_heredoc(t_core *core)
 {
 	char	*limiter;
 	t_token	*cur;
-	int		doc_fd;
+	t_bool	flag;
 
-	cur = get_core()->token;
+	flag = FALSE;
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+	cur = core->token;
 	while (cur)
 	{
 		if (cur->token == HEREDOC && cur->next->token == WORD)
 		{
-			doc_fd = open("heredoc_tmp", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			if (has_quote(cur->next->str))
+			{
+				flag = TRUE;
+				remove_quote(cur->next->str, cur);
+			}
+			core->doc_fd = open("heredoc_tmp",
+					O_WRONLY | O_CREAT | O_TRUNC, 0644);
 			limiter = cur->next->str;
-			if (get_core()->is_heredoc == FALSE)
-				child_process(doc_fd, limiter);
+			if (core->is_heredoc == FALSE)
+				child_process(limiter, flag);
 		}
 		cur = cur->next;
 	}
 }
-void	child_process(int doc_fd, char *limiter)
+
+void	child_process(char *limiter, t_bool flag)
 {
 	pid_t	pid;
 
 	pid = fork();
 	if (pid == 0)
-		prompt_heredoc(doc_fd, limiter);
+	{
+		signal(SIGINT, ctrl_c_heredoc);
+		prompt_heredoc(limiter, flag);
+	}
 	else
-		wait_child(pid);
-	close(doc_fd);
+		wait_child_heredoc(pid);
+	close(get_core()->doc_fd);
 }
 
-void	wait_child(pid_t pid)
+void	wait_child_heredoc(pid_t pid)
 {
 	int	wstatus;
 	int	exit_status;
@@ -57,9 +84,9 @@ void	wait_child(pid_t pid)
 	if (WIFEXITED(wstatus))
 	{
 		exit_status = WEXITSTATUS(wstatus);
-		if (exit_status != 0)
+		if (exit_status == 130)
 		{
-			if (get_core()->exit_status != 130)
+			if (get_core()->exit_status == 130)
 				get_core()->is_heredoc = TRUE;
 			get_core()->exit_status = exit_status;
 		}
@@ -68,7 +95,7 @@ void	wait_child(pid_t pid)
 	}
 }
 
-void	prompt_heredoc(int doc_fd, char *limiter)
+void	prompt_heredoc(char *limiter, t_bool flag)
 {
 	char	*line;
 
@@ -80,57 +107,11 @@ void	prompt_heredoc(int doc_fd, char *limiter)
 			free(line);
 			break ;
 		}
-		else if(ft_strcmp(line, "$"))
+		else if (flag == FALSE && ft_strcmp(line, "$"))
 			line = expand_on_heredoc(line);
-		ft_putendl_fd(line, doc_fd);
+		ft_putendl_fd(line, get_core()->doc_fd);
 		free(line);
 	}
-	close(doc_fd);
+	close(get_core()->doc_fd);
 	clear_child();
-}
-
-char	*has_var(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (line[i] == '$' && line[i + 1])
-		{
-			if (line[i + 1] == '?' || ft_isalnum(line[i + 1]))
-				return (line + i);
-		}
-		i++;
-	}
-	return (NULL);
-}
-
-char	*search_var(char *str)
-{
-	int		i;
-	char	*line;
-
-	line = has_var(str);
-	if (!line)
-		return (NULL);
-	i = 1;
-	while (line[i] && (ft_isalnum(line[i])))
-		i++;
-	if (line[i] == '?')
-		i++;
-	return (ft_substr(line, 0, i));
-}
-
-char *expand_on_heredoc(char *line)
-{
-
-	char	*var;
-	
-	while(has_var(line))
-	{
-		garbage_collect(var = search_var(line));
-		line = ft_replace(line, var, my_get_env(var + 1));
-	}
-	return (line);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfrade <dfrade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 11:32:43 by csilva-m          #+#    #+#             */
-/*   Updated: 2024/05/18 17:06:43 by csilva-m         ###   ########.fr       */
+/*   Updated: 2024/06/17 20:53:28 by dfrade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,17 @@ int	ft_quotes_status(char c, int status)
 	return (status);
 }
 
-void	remove_quote(char *str)
+void	split_quotes(char *str, int *i)
+{
+	char	quote;
+
+	quote = str[*i];
+	(*i)++;
+	while (str[*i] && str[*i] != quote)
+		(*i)++;
+}
+
+void	remove_quote(char *str, t_token *cur)
 {
 	while (*str != '\0')
 	{
@@ -38,6 +48,8 @@ void	remove_quote(char *str)
 		}
 		else if (*str == '\"')
 		{
+			if (cur->token == (int)(VAR))
+				cur->token = WORD;
 			ft_memmove(str, str + 1, ft_strlen(str + 1) + 1);
 			while (*str != '\"')
 				str++;
@@ -46,14 +58,4 @@ void	remove_quote(char *str)
 		else
 			str++;
 	}
-}
-
-void	split_quotes(char *str, int *i)
-{
-	char	quote;
-
-	quote = str[*i];
-	(*i)++;
-	while (str[*i] && str[*i] != quote)
-		(*i)++;
 }

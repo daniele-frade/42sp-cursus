@@ -3,39 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfrade <dfrade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 11:32:21 by csilva-m          #+#    #+#             */
-/*   Updated: 2024/05/07 15:18:01 by csilva-m         ###   ########.fr       */
+/*   Updated: 2024/06/13 19:16:16 by dfrade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_print_env(void)
-{
-	int		i;
-	t_env	*stack;
-
-	stack = get_core()->env_list;
-	i = 0;
-	while (stack)
-	{
-		printf("-----------------------------\n");
-		printf("| Key  [%d]:%s.\n", i, stack->key);
-		printf("| Value[%d]:%s.\n", i, stack->value);
-		printf("| Next [%d]:%p\n", i, stack->next);
-		printf("-----------------------------\n");
-		i++;
-		stack = stack->next;
-	}
-}
-
-
 t_env	*create_env_lst(char *key, char *value)
 {
 	t_env	*node;
-	if(!key || !value)
+
+	if (!key && !value)
 		return (NULL);
 	node = ft_calloc(sizeof(t_token), 1);
 	node->key = ft_strdup(key);
@@ -101,5 +82,4 @@ void	get_env_vars(t_core *core)
 	core->env = env;
 	split_env_vars();
 	ft_free_matrice(env);
-
 }

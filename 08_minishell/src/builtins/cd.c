@@ -3,68 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfrade <dfrade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 12:08:54 by csilva-m          #+#    #+#             */
-/*   Updated: 2024/04/24 17:19:06 by csilva-m         ###   ########.fr       */
+/*   Updated: 2024/06/16 02:19:19 by dfrade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-t_bool is_path(char *path)
-{
-	struct stat path_stat;
-	if(access(path, F_OK) == -1)
-	{
-		error("cd: No such file or directory", 1, 1);
-		return(FALSE);
-	}
-	if(lstat(path, &path_stat) == 0)
-	{
-		if (S_ISDIR(path_stat.st_mode))
-			return (TRUE);
-		else
-		{
-			error("cd: Not a directory", 1, 1);
-			return(FALSE);
-		}
-	}
-	return(FALSE);	
-}
-
+void	set_var(char *key, char *value);
+void	set_new_pwd(char *old_path);
+void	cd_error_process(char *cur);
 
 void	cd(char **argv)
 {
-	char	*path;
-	
-	//char	*oldpwd;
+	char	*new_path;
+	char	*old_path;
 
+	get_core()->exit_status = 0;
 	if (matrice_len(argv) > 2)
 	{
-		error("cd: too many arguments", 1, 1);
+		error("cd: too many arguments", 1, 2);
 		return ;
 	}
-	else if (argv[0] == NULL || argv[0][0] == '~')
-	{
-		garbage_collect(path = my_get_env("HOME"));
-		if (path[0] == '\0')
-		{
-			error("cd: HOME not set", 1, 1);
-			return ;
-		}
-	}
-	else if(argv[0][0] == '-')
-	{
-		garbage_collect(path = my_get_env("OLDPWD"));
-		if (path[0] == '\0')
-		{
-			error("cd: OLDPWD not set", 1, 1);
-			return ;
-		}
-	}
+	if (matrice_len(argv) == 1 || argv[1][0] == '~')
+		garbage_collect(new_path = my_get_env("HOME"));
 	else
-		path = argv[0];
-	chdir(path);
+		garbage_collect(new_path = ft_strdup(argv[1]));
+	old_path = getcwd(NULL, 0);
+	if (!new_path)
+	{
+		error("cd: HOME not set", 1, 2);
+		free(old_path);
+		return ;
+	}
+	if (chdir(new_path) == -1)
+		cd_error_process(old_path);
+	else
+		set_new_pwd(old_path);
+}
+
+void	set_var(char *key, char *value)
+{
+	t_env	*var;
+
+	var = get_core()->env_list;
+	while (var)
+	{
+		if (ft_strcmp(var->key, key) == 0)
+		{
+			var->value = ft_replace(var->value, var->value, value);
+			return ;
+		}
+		var = var->next;
+	}
+}
+
+void	cd_error_process(char *cur)
+{
+	perror("cd");
+	free(cur);
+	get_core()->exit_status = 1;
+}
+
+void	set_new_pwd(char *old_path)
+{
+	set_var("OLDPWD", old_path);
+	set_var("PWD", getcwd(NULL, 0));
 }

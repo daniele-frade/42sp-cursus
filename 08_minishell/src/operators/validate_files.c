@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_files.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csilva-m <csilva-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dfrade <dfrade@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 15:45:11 by csilva-m          #+#    #+#             */
-/*   Updated: 2024/05/31 15:54:53 by csilva-m         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:15:29 by dfrade           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,53 +16,40 @@ t_bool	file_exists(char *file);
 t_bool	file_readable(char *file);
 t_bool	file_writable(char *file);
 
-t_bool	validate_redir_in_file(char *file)
+t_bool	validate_redir_in_file(char *file, int index)
 {
+	if (file[0] == '\0')
+	{
+		file_error_ambiguous("Ambiguous redirect", 1, index);
+		return (FALSE);
+	}
 	if (!file_exists(file))
 	{
-		error("No such file or directory", 1, 2);
+		file_error(file, "No such file or directory", 1, index);
 		return (FALSE);
 	}
 	if (!file_readable(file))
 	{
-		error("Permission denied", 1, 2);
+		file_error(file, "Permission denied", 1, index);
 		return (FALSE);
 	}
 	return (TRUE);
 }
 
-t_bool	validate_redir_out_file(char *file)
+t_bool	validate_redir_out_file(char *file, int index)
 {
-	if (!file_exists(file))
+	if (file[0] == '\0')
 	{
-		error("No such file or directory", 1, 2);
+		file_error_ambiguous("Ambiguous redirect", 1, index);
 		return (FALSE);
 	}
-	if (!file_writable(file))
+	if (file_exists(file))
 	{
-		error("Permission denied", 1, 2);
-		return (FALSE);
+		if (!file_writable(file))
+		{
+			file_error(file, "Permission denied", 1, index);
+			return (FALSE);
+		}
 	}
-	return (TRUE);
-}
-
-t_bool	file_exists(char *file)
-{
-	if (access(file, F_OK) == -1)
-		return (FALSE);
-	return (TRUE);
-}
-
-t_bool	file_readable(char *file)
-{
-	if (access(file, R_OK) == -1)
-		return (FALSE);
-	return (TRUE);
-}
-
-t_bool	file_writable(char *file)
-{
-	if (access(file, W_OK) == -1)
-		return (FALSE);
 	return (TRUE);
 }

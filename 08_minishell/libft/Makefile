@@ -1,6 +1,6 @@
 NAME = libft.a
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 HEADER = libft.h
 
 OBJ_PATH = ./bin/
@@ -45,7 +45,10 @@ SOURCES = \
 	ft_replace_index.c \
 	ft_isspace.c \
 	ft_strip.c \
-	ft_strcmp.c 
+	ft_strcmp.c \
+	ft_printf.c \
+	ft_printf_utils.c
+
 
 
 BONUS_SOURCES = \
@@ -69,7 +72,7 @@ $(NAME): $(OBJECTS)
 	@ar -rcs $(NAME) $?
 
 $(OBJ_PATH)%.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@ -I $(HEADER)
+	@$(CC) $(CFLAGS) -c $< -o $@
 	
 $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)
