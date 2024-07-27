@@ -1,5 +1,5 @@
 /*
-Excepted Files: ft_printf.c
+Expected files: ft_printf.c
 
 Allowed Functions: malloc, free, write, va_start, va_arg, va_copy and va_end
 Prototype: int ft_printf(const char *, ... )
