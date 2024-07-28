@@ -64,23 +64,23 @@ int exec(char **argv, int i, char **envp)
     int has_pipe = argv[i] && !strcmp(argv[i], "|");
 
     // If the command is 'cd', execute it
-    if (!has_pipe && !strcmp(*argv, "cd"))
+    if (has_pipe == 0 && strcmp(*argv, "cd") == 0)
         return cd(argv, i);
 
     // If the command includes a pipe and creating the pipe fails, return an error
-    if (has_pipe && pipe(fd) == -1)
+    if (has_pipe == 1 && pipe(fd) == -1)
         return err("error: fatal\n");
 
     // Fork the process
     int pid = fork();
-    if (!pid)
+    if (pid == 0)
     {
-        argv[i] = 0;
+        argv[i] = NULL;
         // If the command includes a pipe and setting up the pipe fails, return an error
-        if (has_pipe && (dup2(fd[1], 1) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
+        if (has_pipe && (dup2(fd[1], STDOUT_FILENO) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
             return err("error: fatal\n");
         // If the command is 'cd', execute it
-        if (!strcmp(*argv, "cd"))
+        if (strcmp(*argv, "cd") == 0)
             return cd(argv, i);
         // Execute the command
         execve(*argv, argv, envp);
@@ -91,10 +91,10 @@ int exec(char **argv, int i, char **envp)
     // Wait for the child process to finish
     waitpid(pid, &status, 0);
     // If the command includes a pipe and setting up the pipe fails, return an error
-    if (has_pipe && (dup2(fd[0], 0) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
+    if (has_pipe && (dup2(fd[0], STDIN_FILENO) == -1 || close(fd[0]) == -1 || close(fd[1]) == -1))
         return err("error: fatal\n");
     // Return the exit status of the child process
-    return WIFEXITED(status) && WEXITSTATUS(status);
+    return WIFEXITED(status) != 0 && WEXITSTATUS(status) != 0;
 }
 
 int main(int argc, char **argv, char **envp)
@@ -105,16 +105,16 @@ int main(int argc, char **argv, char **envp)
     if (argc > 1)
     {
         // Loop through each argument
-        while (argv[i] && argv[++i])
+        while (argv[i] != NULL && argv[++i] != NULL)
         {
             // Move the pointer to the next argument
-            argv += i;
+            argv += i; // Direciona o argv para onde começa o meu comando atual
             i = 0;
             // Loop through each argument until a pipe or semicolon is found
-            while (argv[i] && strcmp(argv[i], "|") && strcmp(argv[i], ";"))
+            while (argv[i] != NULL && strcmp(argv[i], "|") && strcmp(argv[i], ";"))
                 i++;
             // If there are arguments, execute them
-            if (i)
+            if (i != 0)
                 status = exec(argv, i, envp);
         }
     }
