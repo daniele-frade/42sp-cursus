@@ -1,0 +1,129 @@
+version: '3.8'
+
+##########################################################
+##########              NETWORKS                ##########
+##########################################################
+networks:
+  inception:
+    name: inception
+
+
+##########################################################
+##########              VOLUMES                 ##########
+##########################################################
+volumes:
+  wordpress_volume:
+    name: wordpress_volume
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/dfrade/data/wordpress
+
+  mariadb_volume:
+    name: mariadb_volume
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/dfrade/data/mariadb
+
+
+##########################################################
+##########              SERVICES                ##########
+##########################################################
+services:
+
+  ##########################################################
+  ##########              SERVICE                 ##########
+  ##########              MARIADB                 ##########
+  ##########################################################
+
+  mariadb:
+    image: mariadb:42sp
+    container_name: mariadb
+
+    env_file:
+      - .env
+    build:
+      context: requirements/mariadb
+      args:
+        - ADMIN_NAME=${ADMIN_NAME}
+        - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+        - DB_NAME=${DB_NAME}
+    environment:
+      - ADMIN_NAME
+      - ADMIN_PASSWORD
+      - DB_NAME
+    volumes:
+      - mariadb_volume:/var/lib/mysql
+    networks:
+      - inception
+    expose:
+      - 3306
+    restart: on-failure
+
+
+  ##########################################################
+  ##########              SERVICE                 ##########
+  ##########             WORDPRESS                ##########
+  ##########################################################
+  wordpress:
+    depends_on:
+      - mariadb
+
+    image: wordpress:42sp
+    container_name: wordpress
+
+    env_file:
+      - .env
+    build:
+      context: requirements/wordpress
+      args:
+        - DB_NAME=${DB_NAME}
+        - TITLE=${TITLE}
+        - ADMIN_NAME=${ADMIN_NAME}
+        - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+        - ADMIN_EMAIL=${ADMIN_EMAIL}
+        - USER_NAME=${USER_NAME}
+        - USER_PASSWORD=${USER_PASSWORD}
+        - USER_EMAIL=${USER_EMAIL}
+    environment:
+      - DB_NAME
+      - TITLE
+      - ADMIN_NAME
+      - ADMIN_PASSWORD
+      - ADMIN_EMAIL
+      - USER_NAME
+      - USER_PASSWORD
+      - USER_EMAIL
+    volumes:
+      - wordpress_volume:/var/www/wordpress
+    networks:
+      - inception
+    expose:
+      - 9000
+    restart: on-failure
+
+  ##########################################################
+  ##########              SERVICE                 ##########
+  ##########               NGINX                  ##########
+  ##########################################################
+  nginx:
+    depends_on:
+      - wordpress
+
+    image: nginx:42sp
+    container_name: nginx
+
+    build:
+      context: requirements/nginx
+
+    ports:
+      - 443:443
+
+    volumes:
+      - wordpress_volume:/var/www/wordpress
+
+    networks:
+      - inception
+
+    restart: on-failure
